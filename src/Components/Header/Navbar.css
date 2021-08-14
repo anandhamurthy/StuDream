@@ -1,0 +1,29 @@
+@import url('https://fonts.googleapis.com/css2?family=Style+Script&display=swap');
+.my-title {
+    font-family: 'Style Script', cursive;
+    font-weight: 400;
+    font-size: 30px;
+    text-align: center;
+    color: black;
+    margin: auto;
+}
+
+.my-div {
+    width: fit-content;
+}
+
+.my-link {
+    cursor: pointer;
+    text-decoration: none;
+    color: black;
+}
+
+.my-navbar {
+    background-color: transparent;
+    transition: 1s;
+}
+
+.my-navbar.active {
+    background-color: white;
+    transition: 1s;
+}

@@ -1,0 +1,20 @@
+.login-float {
+    width: 50px;
+    height: 50px;
+    background-color: #FD6A7E;
+    color: #FFF;
+    border-radius: 50px;
+    text-align: center;
+    box-shadow: 2px 2px 3px #999;
+}
+
+#register_bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    height: 100vh;
+    width: 100%;
+    background-size: cover;
+    background-image: url('../Img/login_register_bg.png');
+}

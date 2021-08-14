@@ -1,0 +1,11 @@
+.book-icon, .doc-icon, .album-icon {
+    font-size: 35px;
+}
+
+.book-card, .doc-card, .album-card {
+    cursor: pointer;
+}
+
+.delete {
+    cursor: pointer;
+}

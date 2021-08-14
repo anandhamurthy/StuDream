@@ -1,0 +1,12 @@
+.lefttab {
+    height: 300px;
+    overflow-x: auto;
+}
+
+.delete {
+    cursor: pointer;
+}
+
+.todo-card {
+    margin: 5px;
+}

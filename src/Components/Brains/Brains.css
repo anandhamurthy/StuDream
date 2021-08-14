@@ -1,0 +1,95 @@
+.single-brain-left-tab {
+    height: 100vh;
+    overflow-x: auto;
+}
+
+.brain-left-tab {
+    height: 300px;
+    overflow-x: auto;
+}
+
+.delete {
+    cursor: pointer;
+}
+
+#BrainCard {
+    margin: 5px;
+}
+
+.rightbox {
+    padding: 0em 34rem 0em 0em;
+    height: 100%;
+}
+
+.rb-container {
+    width: 50%;
+    margin: auto;
+    display: block;
+    position: relative;
+}
+
+.rb-container ul.rb {
+    margin: 2.5em 0;
+    padding: 0;
+    display: inline-block;
+}
+
+.rb-container ul.rb li {
+    list-style: none;
+    margin: auto;
+    margin-left: 2em;
+    min-height: 50px;
+    border-left: 2px dashed #fff;
+    padding: 0 0 5px 30px;
+    position: relative;
+}
+
+.rb-container ul.rb li:last-child {
+    border-left: 0;
+}
+
+.rb-container ul.rb li::before {
+    position: absolute;
+    left: -11px;
+    top: -5px;
+    content: " ";
+    border: 5px solid rgba(255, 255, 255, 1);
+    border-radius: 500%;
+    background: #ec4040;
+    height: 20px;
+    width: 20px;
+    transition: all 500ms ease-in-out;
+}
+
+.rb-container ul.rb li:hover::before {
+    border-color: #232931;
+    transition: all 1000ms ease-in-out;
+}
+
+ul.rb li .timestamp {
+    color: #ffffff;
+    position: relative;
+    width: 100%;
+    font-size: 12px;
+}
+
+.item-title p {
+    color: #000;
+}
+
+#rb-size {
+    width: 400px;
+}
+
+.brain-bg {
+    background-color: #330033;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='496' height='496' viewBox='0 0 800 800'%3E%3Cg fill='none' stroke='%23404' stroke-width='1'%3E%3Cpath d='M769 229L1037 260.9M927 880L731 737 520 660 309 538 40 599 295 764 126.5 879.5 40 599-197 493 102 382-31 229 126.5 79.5-69-63'/%3E%3Cpath d='M-31 229L237 261 390 382 603 493 308.5 537.5 101.5 381.5M370 905L295 764'/%3E%3Cpath d='M520 660L578 842 731 737 840 599 603 493 520 660 295 764 309 538 390 382 539 269 769 229 577.5 41.5 370 105 295 -36 126.5 79.5 237 261 102 382 40 599 -69 737 127 880'/%3E%3Cpath d='M520-140L578.5 42.5 731-63M603 493L539 269 237 261 370 105M902 382L539 269M390 382L102 382'/%3E%3Cpath d='M-222 42L126.5 79.5 370 105 539 269 577.5 41.5 927 80 769 229 902 382 603 493 731 737M295-36L577.5 41.5M578 842L295 764M40-201L127 80M102 382L-261 269'/%3E%3C/g%3E%3Cg fill='%23505'%3E%3Ccircle cx='769' cy='229' r='5'/%3E%3Ccircle cx='539' cy='269' r='5'/%3E%3Ccircle cx='603' cy='493' r='5'/%3E%3Ccircle cx='731' cy='737' r='5'/%3E%3Ccircle cx='520' cy='660' r='5'/%3E%3Ccircle cx='309' cy='538' r='5'/%3E%3Ccircle cx='295' cy='764' r='5'/%3E%3Ccircle cx='40' cy='599' r='5'/%3E%3Ccircle cx='102' cy='382' r='5'/%3E%3Ccircle cx='127' cy='80' r='5'/%3E%3Ccircle cx='370' cy='105' r='5'/%3E%3Ccircle cx='578' cy='42' r='5'/%3E%3Ccircle cx='237' cy='261' r='5'/%3E%3Ccircle cx='390' cy='382' r='5'/%3E%3C/g%3E%3C/svg%3E");
+}
+
+section #loading {
+    position: absolute;
+    top: 50%;
+    left: 45%;
+    width: 10%;
+    cursor: pointer;
+}

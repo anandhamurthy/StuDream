@@ -1,0 +1,8 @@
+.my-bg {
+    background-image: linear-gradient(to bottom, #ececfd, #ffffff, #ffffff, #ffffff, #ffffff);
+}
+
+.my-sub-text {
+    font-weight: 300;
+    font-size: 25px;
+}
