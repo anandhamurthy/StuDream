@@ -36,7 +36,7 @@ function FrontSide() {
 			.catch((error) => {
 				console.log("Error getting document:", error);
 			});
-	}, []);
+	});
 
 	const onSubmit = async (event) => {
 		event.preventDefault();

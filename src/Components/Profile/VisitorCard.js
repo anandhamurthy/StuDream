@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { db } from "../Firebase/firebase";
-import { getUser } from "../Firebase/auth";
+//import { getUser } from "../Firebase/auth";
 
 import finger_print from "../Img/finger_print.png";
 
 function VisitorCard(props) {
 	const [name, setName] = useState("");
-	const [date, setDate] = useState("");
+	//const [date, setDate] = useState("");
 
 	useEffect(() => {
-		const uid = getUser().uid;
+		//const uid = getUser().uid;
 
 		return db
 			.collection("Users")
@@ -25,7 +25,7 @@ function VisitorCard(props) {
 			.catch((error) => {
 				console.log("Error getting document:", error);
 			});
-	}, []);
+	});
 	return (
 		<div>
 			<div id="card-2" className="visitor-card m-2">

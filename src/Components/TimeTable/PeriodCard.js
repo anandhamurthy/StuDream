@@ -1,12 +1,12 @@
 import React from "react";
 import { db } from "../Firebase/firebase";
-import { getUser } from "../Firebase/auth";
+//import { getUser } from "../Firebase/auth";
 
 import "./TimeTable.css";
 
 function PeriodCard(props) {
 	const deletePeriod = (timetable_id) => {
-		const uid = getUser().uid;
+		//const uid = getUser().uid;
 		return db
 			.collection("User Items")
 			.doc(props.user_id)

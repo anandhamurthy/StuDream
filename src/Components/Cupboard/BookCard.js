@@ -24,7 +24,11 @@ function BookCard(props) {
 				<div className="shadow border-0 p-4">
 					<div className="d-flex justify-content-between align-items-center">
 						<div className="d-flex justify-content-start align-items-center">
-							<a href={props.item.book} target="_blank">
+							<a
+								href={props.item.book}
+								target="_blank"
+								rel="noreferrer"
+							>
 								<i className="mx-2 fas fa-book book-icon"></i>
 							</a>
 							<div>

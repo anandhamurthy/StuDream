@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 
 import { db } from "../Firebase/firebase";
-import { getUser } from "../Firebase/auth";
+//import { getUser } from "../Firebase/auth";
 
 import { Chart } from "react-google-charts";
 
@@ -23,7 +23,7 @@ function ProfileEducation(props) {
 	}
 
 	useEffect(() => {
-		const uid = getUser().uid;
+		//const uid = getUser().uid;
 		return db
 			.collection("User Items")
 			.doc(props.user_id)
@@ -35,11 +35,11 @@ function ProfileEducation(props) {
 				});
 				setExams(examItems);
 			});
-	}, []);
+	});
 
 	function getSubjectMarks(exam_id) {
 		changeMyTab();
-		const uid = getUser().uid;
+		//const uid = getUser().uid;
 		db.collection("User Items")
 			.doc(props.user_id)
 			.collection("My Subjects")

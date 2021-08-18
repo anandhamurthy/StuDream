@@ -24,7 +24,7 @@ function TimeTable(props) {
 	const [day_7, setDay7] = useState([]);
 
 	useEffect(() => {
-		const uid = getUser().uid;
+		//const uid = getUser().uid;
 		return db
 			.collection("User Items")
 			.doc(props.user_id)
@@ -66,7 +66,7 @@ function TimeTable(props) {
 				console.log(day3);
 				console.log(day4);
 			});
-	}, []);
+	});
 
 	const onSubmit = async (event) => {
 		event.preventDefault();

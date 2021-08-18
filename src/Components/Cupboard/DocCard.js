@@ -25,7 +25,11 @@ function DocCard(props) {
 				<div className="shadow border-0 p-4">
 					<div className="d-flex justify-content-between align-items-center">
 						<div className="d-flex justify-content-start align-items-center">
-							<a href={props.item.doc} target="_blank">
+							<a
+								href={props.item.doc}
+								target="_blank"
+								rel="noreferrer"
+							>
 								<i className="mx-2 far fa-file-pdf doc-icon"></i>
 							</a>
 							<div>

@@ -310,7 +310,7 @@ function Settings(props) {
 				.ref(`Profile Images/${item.name}`)
 				.put(item);
 			promises.push(uploadTask);
-			uploadTask.on(
+			return uploadTask.on(
 				"state_changed",
 				(snapshot) => {
 					const progress = Math.round(
@@ -350,7 +350,7 @@ function Settings(props) {
 				.ref(`Inspiration Images/${item.name}`)
 				.put(item);
 			promises.push(uploadTask);
-			uploadTask.on(
+			return uploadTask.on(
 				"state_changed",
 				(snapshot) => {
 					const progress = Math.round(
@@ -390,7 +390,7 @@ function Settings(props) {
 				.ref(`Inspiration Images/${item.name}`)
 				.put(item);
 			promises.push(uploadTask);
-			uploadTask.on(
+			return uploadTask.on(
 				"state_changed",
 				(snapshot) => {
 					const progress = Math.round(
@@ -430,7 +430,7 @@ function Settings(props) {
 				.ref(`Inspiration Images/${item.name}`)
 				.put(item);
 			promises.push(uploadTask);
-			uploadTask.on(
+			return uploadTask.on(
 				"state_changed",
 				(snapshot) => {
 					const progress = Math.round(
@@ -470,7 +470,7 @@ function Settings(props) {
 				.ref(`Inspiration Images/${item.name}`)
 				.put(item);
 			promises.push(uploadTask);
-			uploadTask.on(
+			return uploadTask.on(
 				"state_changed",
 				(snapshot) => {
 					const progress = Math.round(

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./CalenderSide.css";
 
 import { db } from "../Firebase/firebase";
-import { getUser } from "../Firebase/auth";
+//import { getUser } from "../Firebase/auth";
 
 import room_2 from "../Img/room_2.png";
 import cupboard from "../Img/cupboard.png";
@@ -22,8 +22,9 @@ function CalenderSide(props) {
 	const [lockCupboard, setLockCupboard] = useState(false);
 
 	useEffect(() => {
-		const uid = getUser().uid;
-		db.collection("Users")
+		//const uid = getUser().uid;
+		return db
+			.collection("Users")
 			.doc(props.user_id)
 			.get()
 			.then((doc) => {
@@ -36,7 +37,7 @@ function CalenderSide(props) {
 			.catch((error) => {
 				console.log("Error getting document:", error);
 			});
-	}, []);
+	});
 
 	const openTodo = () => {
 		setTodo(!todo);

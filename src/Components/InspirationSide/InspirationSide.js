@@ -13,7 +13,7 @@ import room_1 from "../Img/room_1.png";
 
 import ground_lamp from "../Img/lamp.png";
 
-import { getUser } from "../Firebase/auth";
+//import { getUser } from "../Firebase/auth";
 import ViewImg from "../ViewImg/ViewImg";
 
 function InspirationSide(props) {
@@ -23,7 +23,7 @@ function InspirationSide(props) {
 	const [img, setImg] = useState("");
 
 	useEffect(() => {
-		const uid = getUser().uid;
+		//const uid = getUser().uid;
 
 		db.collection("Users")
 			.doc(props.user_id)
@@ -39,7 +39,7 @@ function InspirationSide(props) {
 			.catch((error) => {
 				console.log("Error getting document:", error);
 			});
-	}, []);
+	});
 
 	const openMyView = (url) => {
 		setImg(url);

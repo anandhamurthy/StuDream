@@ -6,7 +6,7 @@ import BrainSide from "../BrainSide/BrainSide";
 
 import left from "../Img/left.png";
 import right from "../Img/right.png";
-import { Route, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { db } from "../Firebase/firebase";
 import { getUser } from "../Firebase/auth";
 
@@ -35,7 +35,8 @@ function MyRoom() {
 	};
 
 	useEffect(() => {
-		db.collection("User IDs")
+		return db
+			.collection("User IDs")
 			.doc(params.id)
 			.get()
 			.then((doc) => {
@@ -48,7 +49,7 @@ function MyRoom() {
 			.catch((error) => {
 				console.log("Error getting document:", error);
 			});
-	}, []);
+	});
 
 	return (
 		<div>

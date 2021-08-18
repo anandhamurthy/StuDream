@@ -32,7 +32,7 @@ function Achievement(props) {
 	}
 
 	useEffect(() => {
-		const uid = getUser().uid;
+		//const uid = getUser().uid;
 		return db
 			.collection("User Items")
 			.doc(props.user_id)

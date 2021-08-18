@@ -6,7 +6,7 @@ import inspiration_3 from "../Img/inspiration.png";
 import inspiration_4 from "../Img/inspiration.png";
 
 import { db } from "../Firebase/firebase";
-import { getUser } from "../Firebase/auth";
+//import { getUser } from "../Firebase/auth";
 
 import "./Profile.css";
 import ProfileTodo from "../Todo/ProfileTodo";
@@ -29,7 +29,7 @@ function Profile(props) {
 	const [cupboard, setCupboard] = useState(false);
 
 	useEffect(() => {
-		const uid = getUser().uid;
+		//const uid = getUser().uid;
 		return db
 			.collection("Users")
 			.doc(props.user_id)
@@ -51,7 +51,7 @@ function Profile(props) {
 			.catch((error) => {
 				console.log("Error getting document:", error);
 			});
-	}, []);
+	});
 
 	return (
 		<div className="p-5 container-fluid">

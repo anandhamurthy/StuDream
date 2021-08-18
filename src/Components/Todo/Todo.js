@@ -27,7 +27,7 @@ function Todo(props) {
 	const [searchCompleted, setSearchCompleted] = useState([]);
 
 	useEffect(() => {
-		const uid = getUser().uid;
+		//const uid = getUser().uid;
 		return db
 			.collection("User Items")
 			.doc(props.user_id)
@@ -48,7 +48,7 @@ function Todo(props) {
 				setDoingTodo(doingTodo);
 				setCompletedTodo(completedTodo);
 			});
-	}, []);
+	});
 
 	const onTodoSearch = async (event) => {
 		event.preventDefault();

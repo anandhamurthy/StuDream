@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 
 import { db } from "../Firebase/firebase";
-import { getUser } from "../Firebase/auth";
+//import { getUser } from "../Firebase/auth";
 import Empty from "../Empty/Empty";
 
 import "./Cupboard.css";
@@ -23,7 +23,7 @@ function ProfileCupboard(props) {
 	}
 
 	useEffect(() => {
-		const uid = getUser().uid;
+		//const uid = getUser().uid;
 		return db
 			.collection("User Items")
 			.doc(props.user_id)
@@ -35,10 +35,10 @@ function ProfileCupboard(props) {
 				});
 				setMyBook(bookItems);
 			});
-	}, []);
+	});
 
 	useEffect(() => {
-		const uid = getUser().uid;
+		//const uid = getUser().uid;
 		return db
 			.collection("User Items")
 			.doc(props.user_id)
@@ -50,10 +50,10 @@ function ProfileCupboard(props) {
 				});
 				setMyDoc(docItems);
 			});
-	}, []);
+	});
 
 	useEffect(() => {
-		const uid = getUser().uid;
+		//const uid = getUser().uid;
 		return db
 			.collection("User Items")
 			.doc(props.user_id)
@@ -65,7 +65,7 @@ function ProfileCupboard(props) {
 				});
 				setMyAlbum(albumItems);
 			});
-	}, []);
+	});
 
 	return (
 		<div className="border-0 card p-2">

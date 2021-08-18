@@ -44,7 +44,7 @@ function Cupboard(props) {
 	}
 
 	useEffect(() => {
-		const uid = getUser().uid;
+		//const uid = getUser().uid;
 		return db
 			.collection("User Items")
 			.doc(props.user_id)
@@ -56,10 +56,10 @@ function Cupboard(props) {
 				});
 				setMyBook(bookItems);
 			});
-	}, []);
+	});
 
 	useEffect(() => {
-		const uid = getUser().uid;
+		//const uid = getUser().uid;
 		return db
 			.collection("User Items")
 			.doc(props.user_id)
@@ -71,10 +71,10 @@ function Cupboard(props) {
 				});
 				setMyDoc(docItems);
 			});
-	}, []);
+	});
 
 	useEffect(() => {
-		const uid = getUser().uid;
+		//const uid = getUser().uid;
 		return db
 			.collection("User Items")
 			.doc(props.user_id)
@@ -86,7 +86,7 @@ function Cupboard(props) {
 				});
 				setMyAlbum(albumItems);
 			});
-	}, []);
+	});
 
 	const handleBookChange = (event) => {
 		setUploadBook(true);
@@ -115,7 +115,7 @@ function Cupboard(props) {
 				.ref(`Books/${book_item.name}`)
 				.put(book_item);
 			promises.push(uploadTask);
-			uploadTask.on(
+			return uploadTask.on(
 				"state_changed",
 				(snapshot) => {
 					const progress = Math.round(
@@ -154,7 +154,7 @@ function Cupboard(props) {
 				.ref(`Docs/${doc_item.name}`)
 				.put(doc_item);
 			promises.push(uploadTask);
-			uploadTask.on(
+			return uploadTask.on(
 				"state_changed",
 				(snapshot) => {
 					const progress = Math.round(
@@ -193,7 +193,7 @@ function Cupboard(props) {
 				.ref(`Albums/${album_item.name}`)
 				.put(album_item);
 			promises.push(uploadTask);
-			uploadTask.on(
+			return uploadTask.on(
 				"state_changed",
 				(snapshot) => {
 					const progress = Math.round(

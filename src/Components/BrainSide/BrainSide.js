@@ -5,7 +5,7 @@ import room_4 from "../Img/room_4.png";
 import main_brain from "../Img/brain.png";
 
 import { db } from "../Firebase/firebase";
-import { getUser } from "../Firebase/auth";
+//import { getUser } from "../Firebase/auth";
 
 import brain_1 from "../Img/brain_x.png";
 import brain_2 from "../Img/brain_y.png";
@@ -46,7 +46,7 @@ function BrainSide(props) {
 	const [b_7, setBrain7] = useState([]);
 
 	useEffect(() => {
-		const uid = getUser().uid;
+		//const uid = getUser().uid;
 		return db
 			.collection("User Items")
 			.doc(props.user_id)
@@ -88,7 +88,7 @@ function BrainSide(props) {
 				console.log(brain_3);
 				console.log(brain_4);
 			});
-	}, []);
+	});
 
 	return (
 		<body>

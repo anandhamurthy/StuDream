@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 
 import { db } from "../Firebase/firebase";
-import { getUser } from "../Firebase/auth";
+//import { getUser } from "../Firebase/auth";
 
 import Empty from "../Empty/Empty";
 import VisitorCard from "./VisitorCard";
@@ -10,7 +10,7 @@ function Visitors(props) {
 	const [visitors, setVisitors] = useState([]);
 
 	useEffect(() => {
-		const uid = getUser().uid;
+		//const uid = getUser().uid;
 		return db
 			.collection("User Items")
 			.doc(props.user_id)
@@ -22,7 +22,7 @@ function Visitors(props) {
 				});
 				setVisitors(visitors_item);
 			});
-	}, []);
+	});
 
 	return (
 		<div className="border-0 p-2">

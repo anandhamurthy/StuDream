@@ -34,7 +34,7 @@ function Education(props) {
 	}
 
 	useEffect(() => {
-		const uid = getUser().uid;
+		//const uid = getUser().uid;
 		return db
 			.collection("User Items")
 			.doc(props.user_id)
@@ -46,11 +46,11 @@ function Education(props) {
 				});
 				setExams(examItems);
 			});
-	}, []);
+	});
 
 	function getSubjectMarks(exam_id) {
 		changeMyTab();
-		const uid = getUser().uid;
+		//const uid = getUser().uid;
 		db.collection("User Items")
 			.doc(props.user_id)
 			.collection("My Subjects")

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 
 import { db } from "../Firebase/firebase";
-import { getUser } from "../Firebase/auth";
+//import { getUser } from "../Firebase/auth";
 
 import "./Todo.css";
 import TodoCard from "./TodoCard";
@@ -21,7 +21,7 @@ function ProfileTodo(props) {
 	const [searchCompleted, setSearchCompleted] = useState([]);
 
 	useEffect(() => {
-		const uid = getUser().uid;
+		//const uid = getUser().uid;
 		return db
 			.collection("User Items")
 			.doc(props.user_id)
@@ -42,7 +42,7 @@ function ProfileTodo(props) {
 				setDoingTodo(doingTodo);
 				setCompletedTodo(completedTodo);
 			});
-	}, []);
+	});
 
 	const onTodoSearch = async (event) => {
 		event.preventDefault();
