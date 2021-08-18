@@ -102,19 +102,31 @@ function FrontSide() {
 			{verify ? (
 				<section>
 					<img src={door} alt="" id="door" />
-					{params.id ===
-					JSON.parse(localStorage.getItem("user")).uid ? (
-						<div>
-							<img
-								src={bio_metrics}
-								alt=""
-								id="bio_metrics"
-								onClick={openRoom}
-							/>
-							<p id="name">
-								{localStorage.getItem("userName")}'s Room
-							</p>
-						</div>
+					{localStorage.getItem("user") ? (
+						params.id ===
+						JSON.parse(localStorage.getItem("user")).uid ? (
+							<div>
+								<img
+									src={bio_metrics}
+									alt=""
+									id="bio_metrics"
+									onClick={openRoom}
+								/>
+								<p id="name">
+									{localStorage.getItem("userName")}'s Room
+								</p>
+							</div>
+						) : (
+							<div>
+								<img
+									src={bio_metrics}
+									alt=""
+									id="bio_metrics"
+									onClick={onSubmit}
+								/>
+								<p id="name">{name}'s Room</p>
+							</div>
+						)
 					) : (
 						<div>
 							<img
