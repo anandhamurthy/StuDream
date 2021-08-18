@@ -8,7 +8,8 @@ function MyWelcomeRoute({ component: Component, ...rest }) {
 		<Route
 			{...rest}
 			render={() => {
-				return localStorage.getItem("isUser") === "true" ? (
+				return localStorage.getItem("isUser") === "true" ||
+					localStorage.setItem("friend_user_id") ? (
 					<MyRoom></MyRoom>
 				) : (
 					<Login></Login>
