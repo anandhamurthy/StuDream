@@ -11,6 +11,25 @@ import PageNotFound from "../PageNotFound/PageNotFound";
 function FrontSide() {
 	const params = useParams();
 	const [verify, setVerify] = useState(false);
+	const [name, setName] = useState("");
+
+	useEffect(() => {
+		//const uid = getUser().uid;
+		return db
+			.collection("Users")
+			.doc(params.id)
+			.get()
+			.then((doc) => {
+				if (doc.exists) {
+					setName(doc.data().name);
+				} else {
+					console.log("No such document!");
+				}
+			})
+			.catch((error) => {
+				console.log("Error getting document:", error);
+			});
+	});
 
 	function openRoom() {
 		window.location =
@@ -85,21 +104,28 @@ function FrontSide() {
 					<img src={door} alt="" id="door" />
 					{params.id ===
 					JSON.parse(localStorage.getItem("user")).uid ? (
-						<img
-							src={bio_metrics}
-							alt=""
-							id="bio_metrics"
-							onClick={openRoom}
-						/>
+						<div>
+							<img
+								src={bio_metrics}
+								alt=""
+								id="bio_metrics"
+								onClick={openRoom}
+							/>
+							<p id="name">
+								{localStorage.getItem("userName")}'s Room
+							</p>
+						</div>
 					) : (
-						<img
-							src={bio_metrics}
-							alt=""
-							id="bio_metrics"
-							onClick={onSubmit}
-						/>
+						<div>
+							<img
+								src={bio_metrics}
+								alt=""
+								id="bio_metrics"
+								onClick={onSubmit}
+							/>
+							<p id="name">{name}'s Room</p>
+						</div>
 					)}
-					<p id="name">{localStorage.getItem("userName")}'s Room</p>
 				</section>
 			) : (
 				<div>

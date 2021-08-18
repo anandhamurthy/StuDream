@@ -126,6 +126,48 @@ section #quote {
     }
 }
 
+@media(max-width: 700px) {
+    section #inspiration_1 {
+        position: absolute;
+        left: 21%;
+        top: 50%;
+        width: 85px;
+        cursor: pointer;
+    }
+    section #inspiration_2 {
+        position: absolute;
+        left: 37%;
+        top: 50%;
+        width: 85px;
+        cursor: pointer;
+    }
+    section #inspiration_3 {
+        position: absolute;
+        right: 37%;
+        top: 50%;
+        width: 85px;
+        cursor: pointer;
+    }
+    section #inspiration_4 {
+        position: absolute;
+        left: 65%;
+        top: 50%;
+        width: 85px;
+        cursor: pointer;
+    }
+    section #quote {
+        position: absolute;
+        top: 30%;
+        right: 21%;
+        left: 22%;
+        font-size: 14px;
+        padding: 5px;
+        margin: 0;
+        font-weight: 400;
+        color: white;
+    }
+}
+
 @media(max-width: 1000px) {
     section #inspiration_1 {
         position: absolute;

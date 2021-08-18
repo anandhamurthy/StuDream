@@ -42,7 +42,7 @@ function Profile(props) {
 					setEmail(doc.data().email_id);
 					setUserId(doc.data().user_id);
 					setRoomUrl(
-						"https://studream.netlify.app/room/" +
+						"https://studream.netlify.app/welcome/" +
 							doc.data().room_id
 					);
 					setCupboard(doc.data().isCupboard);
