@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "./Navbar.css";
 import icon from "../Img/icon.png";
 function Navbar() {
@@ -39,7 +39,7 @@ function Navbar() {
 							alt=""
 							width="50px"
 						/>
-						<a className="my-link align-self-center" href="#">
+						<a className="my-link align-self-center" href="/">
 							<h4 className="my-title">StuDream</h4>
 						</a>
 					</div>
