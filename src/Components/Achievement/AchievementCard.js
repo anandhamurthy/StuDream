@@ -46,7 +46,7 @@ function AchievementCard(props) {
 					<i>{props.item.event_date}</i>
 				</p>
 
-				{props.item.event_images.length != 0 ? (
+				{props.item.event_images.length !== 0 ? (
 					<div>
 						<div className="p-2 d-flex justify-content-start align-items-center">
 							<i className=" mx-2 far fa-images text-white"></i>

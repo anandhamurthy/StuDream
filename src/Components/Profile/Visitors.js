@@ -28,7 +28,7 @@ function Visitors(props) {
 		<div className="border-0 p-2">
 			<div className="lefttab">
 				<div className="list-group">
-					{visitors.length != 0 ? (
+					{visitors.length !== 0 ? (
 						<div>
 							{visitors.map((item, index) => (
 								<VisitorCard

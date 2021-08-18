@@ -44,7 +44,7 @@ function Achievement(props) {
 				});
 				setAchievements(items);
 			});
-	}, []);
+	});
 
 	const onSearch = async (event) => {
 		event.preventDefault();
@@ -77,7 +77,7 @@ function Achievement(props) {
 		images.map((image) => {
 			const uploadTask = storage.ref(`Images/${image.name}`).put(image);
 			promises.push(uploadTask);
-			uploadTask.on(
+			return uploadTask.on(
 				"state_changed",
 				(snapshot) => {
 					const progress = Math.round(
@@ -198,9 +198,9 @@ function Achievement(props) {
 
 						<div className="lefttab">
 							<div className=" list-group">
-								{achievements.length != 0 ? (
+								{achievements.length !== 0 ? (
 									<div>
-										{search.length != 0
+										{search.length !== 0
 											? searchAchievement.map(
 													(item, index) => (
 														<div
@@ -355,7 +355,7 @@ function Achievement(props) {
 					</div>
 				</div>
 			</div>
-			{showImages && achievementImages.length != 0 ? (
+			{showImages && achievementImages.length !== 0 ? (
 				<div>
 					<div className="d-flex justify-content-start align-items-center">
 						<i
@@ -427,9 +427,9 @@ function Achievement(props) {
 
 						<div className="lefttab">
 							<div className=" list-group">
-								{achievements.length != 0 ? (
+								{achievements.length !== 0 ? (
 									<div>
-										{search.length != 0
+										{search.length !== 0
 											? searchAchievement.map(
 													(item, index) => (
 														<div
@@ -486,7 +486,7 @@ function Achievement(props) {
 				</div>
 			</div>
 
-			{showImages && achievementImages.length != 0 ? (
+			{showImages && achievementImages.length !== 0 ? (
 				<div>
 					<div className="d-flex justify-content-start align-items-center">
 						<i

@@ -803,7 +803,7 @@ function Cupboard(props) {
 				</div>
 			</div>
 
-			{showImages && albumImages.length != 0 ? (
+			{showImages && albumImages.length !== 0 ? (
 				<div>
 					<div className="d-flex justify-content-start align-items-center">
 						<i
@@ -1006,7 +1006,7 @@ function Cupboard(props) {
 				</div>
 			</div>
 
-			{showImages && albumImages.length != 0 ? (
+			{showImages && albumImages.length !== 0 ? (
 				<div>
 					<div className="d-flex justify-content-start align-items-center">
 						<i

@@ -321,7 +321,7 @@ function ProfileBrain(props) {
 						role="tabpanel"
 						aria-labelledby="br1-tab"
 					>
-						{brain_1.length != 0 ? (
+						{brain_1.length !== 0 ? (
 							<div className="input-group mb-3">
 								<input
 									type="text"
@@ -346,9 +346,9 @@ function ProfileBrain(props) {
 						)}
 						<div className="brain-left-tab">
 							<div className="list-group">
-								{brain_1.length != 0 ? (
+								{brain_1.length !== 0 ? (
 									<div>
-										{search1.length != 0 ? (
+										{search1.length !== 0 ? (
 											<div className="rightbox brain-bg rounded mx-2">
 												<div className="rb-container">
 													<ul className="rb">
@@ -404,7 +404,7 @@ function ProfileBrain(props) {
 						role="tabpanel"
 						aria-labelledby="br2-tab"
 					>
-						{brain_2.length != 0 ? (
+						{brain_2.length !== 0 ? (
 							<div className="input-group mb-3">
 								<input
 									type="text"
@@ -429,9 +429,9 @@ function ProfileBrain(props) {
 						)}
 						<div className="brain-left-tab ">
 							<div className=" list-group ">
-								{brain_2.length != 0 ? (
+								{brain_2.length !== 0 ? (
 									<div>
-										{search2.length != 0 ? (
+										{search2.length !== 0 ? (
 											<div className="rightbox brain-bg rounded mx-2">
 												<div className="rb-container">
 													<ul className="rb">
@@ -485,7 +485,7 @@ function ProfileBrain(props) {
 						role="tabpanel"
 						aria-labelledby="br3-tab"
 					>
-						{brain_3.length != 0 ? (
+						{brain_3.length !== 0 ? (
 							<div className="input-group mb-3">
 								<input
 									type="text"
@@ -510,9 +510,9 @@ function ProfileBrain(props) {
 						)}
 						<div className="brain-left-tab ">
 							<div className=" list-group ">
-								{brain_3.length != 0 ? (
+								{brain_3.length !== 0 ? (
 									<div>
-										{search3.length != 0 ? (
+										{search3.length !== 0 ? (
 											<div className="rightbox brain-bg rounded mx-2">
 												<div className="rb-container">
 													<ul className="rb">
@@ -566,7 +566,7 @@ function ProfileBrain(props) {
 						role="tabpanel"
 						aria-labelledby="br4-tab"
 					>
-						{brain_4.length != 0 ? (
+						{brain_4.length !== 0 ? (
 							<div className="input-group mb-3">
 								<input
 									type="text"
@@ -591,9 +591,9 @@ function ProfileBrain(props) {
 						)}
 						<div className="brain-left-tab ">
 							<div className=" list-group ">
-								{brain_4.length != 0 ? (
+								{brain_4.length !== 0 ? (
 									<div>
-										{search4.length != 0 ? (
+										{search4.length !== 0 ? (
 											<div className="rightbox brain-bg rounded mx-2">
 												<div className="rb-container">
 													<ul className="rb">
@@ -647,7 +647,7 @@ function ProfileBrain(props) {
 						role="tabpanel"
 						aria-labelledby="br5-tab"
 					>
-						{brain_5.length != 0 ? (
+						{brain_5.length !== 0 ? (
 							<div className="input-group mb-3">
 								<input
 									type="text"
@@ -672,9 +672,9 @@ function ProfileBrain(props) {
 						)}
 						<div className="brain-left-tab ">
 							<div className=" list-group ">
-								{brain_5.length != 0 ? (
+								{brain_5.length !== 0 ? (
 									<div>
-										{search5.length != 0 ? (
+										{search5.length !== 0 ? (
 											<div className="rightbox brain-bg rounded mx-2">
 												<div className="rb-container">
 													<ul className="rb">
@@ -728,7 +728,7 @@ function ProfileBrain(props) {
 						role="tabpanel"
 						aria-labelledby="br6-tab"
 					>
-						{brain_6.length != 0 ? (
+						{brain_6.length !== 0 ? (
 							<div className="input-group mb-3">
 								<input
 									type="text"
@@ -753,9 +753,9 @@ function ProfileBrain(props) {
 						)}
 						<div className="brain-left-tab ">
 							<div className=" list-group ">
-								{brain_6.length != 0 ? (
+								{brain_6.length !== 0 ? (
 									<div>
-										{search6.length != 0 ? (
+										{search6.length !== 0 ? (
 											<div className="rightbox brain-bg rounded mx-2">
 												<div className="rb-container">
 													<ul className="rb">
@@ -809,7 +809,7 @@ function ProfileBrain(props) {
 						role="tabpanel"
 						aria-labelledby="br7-tab"
 					>
-						{brain_7.length != 0 ? (
+						{brain_7.length !== 0 ? (
 							<div className="input-group mb-3">
 								<input
 									type="text"
@@ -834,9 +834,9 @@ function ProfileBrain(props) {
 						)}
 						<div className="brain-left-tab ">
 							<div className=" list-group ">
-								{brain_7.length != 0 ? (
+								{brain_7.length !== 0 ? (
 									<div>
-										{search7.length != 0 ? (
+										{search7.length !== 0 ? (
 											<div className="rightbox brain-bg rounded mx-2">
 												<div className="rb-container">
 													<ul className="rb">

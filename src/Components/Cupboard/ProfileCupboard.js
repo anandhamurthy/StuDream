@@ -194,7 +194,7 @@ function ProfileCupboard(props) {
 								)}
 							</div>
 
-							{showImages && albumImages.length != 0 ? (
+							{showImages && albumImages.length !== 0 ? (
 								<div>
 									<div className="d-flex justify-content-start align-items-center">
 										<i

@@ -259,7 +259,7 @@ function TimeTable(props) {
 								>
 									<div className="lefttab">
 										<div className="list-group">
-											{day_1.length != 0 ? (
+											{day_1.length !== 0 ? (
 												<div>
 													{day_1.map(
 														(item, index) => (
@@ -291,7 +291,7 @@ function TimeTable(props) {
 								>
 									<div className="lefttab ">
 										<div className=" list-group ">
-											{day_2.length != 0 ? (
+											{day_2.length !== 0 ? (
 												<div>
 													{day_2.map(
 														(item, index) => (
@@ -321,7 +321,7 @@ function TimeTable(props) {
 								>
 									<div className="lefttab ">
 										<div className=" list-group ">
-											{day_3.length != 0 ? (
+											{day_3.length !== 0 ? (
 												<div>
 													{day_3.map(
 														(item, index) => (
@@ -351,7 +351,7 @@ function TimeTable(props) {
 								>
 									<div className="lefttab ">
 										<div className=" list-group ">
-											{day_4.length != 0 ? (
+											{day_4.length !== 0 ? (
 												<div>
 													{day_4.map(
 														(item, index) => (
@@ -381,7 +381,7 @@ function TimeTable(props) {
 								>
 									<div className="lefttab ">
 										<div className=" list-group ">
-											{day_5.length != 0 ? (
+											{day_5.length !== 0 ? (
 												<div>
 													{day_5.map(
 														(item, index) => (
@@ -411,7 +411,7 @@ function TimeTable(props) {
 								>
 									<div className="lefttab ">
 										<div className=" list-group ">
-											{day_6.length != 0 ? (
+											{day_6.length !== 0 ? (
 												<div>
 													{day_6.map(
 														(item, index) => (
@@ -441,7 +441,7 @@ function TimeTable(props) {
 								>
 									<div className="lefttab ">
 										<div className=" list-group ">
-											{day_7.length != 0 ? (
+											{day_7.length !== 0 ? (
 												<div>
 													{day_7.map(
 														(item, index) => (
@@ -714,7 +714,7 @@ function TimeTable(props) {
 								>
 									<div className="lefttab">
 										<div className="list-group">
-											{day_1.length != 0 ? (
+											{day_1.length !== 0 ? (
 												<div>
 													{day_1.map(
 														(item, index) => (
@@ -746,7 +746,7 @@ function TimeTable(props) {
 								>
 									<div className="lefttab ">
 										<div className=" list-group ">
-											{day_2.length != 0 ? (
+											{day_2.length !== 0 ? (
 												<div>
 													{day_2.map(
 														(item, index) => (
@@ -776,7 +776,7 @@ function TimeTable(props) {
 								>
 									<div className="lefttab ">
 										<div className=" list-group ">
-											{day_3.length != 0 ? (
+											{day_3.length !== 0 ? (
 												<div>
 													{day_3.map(
 														(item, index) => (
@@ -806,7 +806,7 @@ function TimeTable(props) {
 								>
 									<div className="lefttab ">
 										<div className=" list-group ">
-											{day_4.length != 0 ? (
+											{day_4.length !== 0 ? (
 												<div>
 													{day_4.map(
 														(item, index) => (
@@ -836,7 +836,7 @@ function TimeTable(props) {
 								>
 									<div className="lefttab ">
 										<div className=" list-group ">
-											{day_5.length != 0 ? (
+											{day_5.length !== 0 ? (
 												<div>
 													{day_5.map(
 														(item, index) => (
@@ -866,7 +866,7 @@ function TimeTable(props) {
 								>
 									<div className="lefttab ">
 										<div className=" list-group ">
-											{day_6.length != 0 ? (
+											{day_6.length !== 0 ? (
 												<div>
 													{day_6.map(
 														(item, index) => (
@@ -896,7 +896,7 @@ function TimeTable(props) {
 								>
 									<div className="lefttab ">
 										<div className=" list-group ">
-											{day_7.length != 0 ? (
+											{day_7.length !== 0 ? (
 												<div>
 													{day_7.map(
 														(item, index) => (

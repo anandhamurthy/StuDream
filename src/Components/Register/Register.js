@@ -33,7 +33,7 @@ function Register() {
 			.createUserWithEmailAndPassword(email, password)
 			.then((userCredential) => {
 				var user = userCredential.user;
-				if (user != null) {
+				if (user !== null) {
 					db.collection("Users")
 						.doc(user.uid)
 						.set({

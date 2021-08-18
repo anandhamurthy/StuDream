@@ -106,7 +106,7 @@ function BrainSide(props) {
 					<img src={main_brain} alt="" id="brain" />
 				)}
 
-				{b_1.length != 0 ? (
+				{b_1.length !== 0 ? (
 					<img
 						src={brain_1}
 						alt=""
@@ -122,7 +122,7 @@ function BrainSide(props) {
 					""
 				)}
 
-				{b_2.length != 0 ? (
+				{b_2.length !== 0 ? (
 					<img
 						src={brain_2}
 						alt=""
@@ -138,7 +138,7 @@ function BrainSide(props) {
 					""
 				)}
 
-				{b_3.length != 0 ? (
+				{b_3.length !== 0 ? (
 					<img
 						src={brain_3}
 						alt=""
@@ -154,7 +154,7 @@ function BrainSide(props) {
 					""
 				)}
 
-				{b_4.length != 0 ? (
+				{b_4.length !== 0 ? (
 					<img
 						src={brain_4}
 						alt=""
@@ -170,7 +170,7 @@ function BrainSide(props) {
 					""
 				)}
 
-				{b_5.length != 0 ? (
+				{b_5.length !== 0 ? (
 					<img
 						src={brain_5}
 						alt=""
@@ -186,7 +186,7 @@ function BrainSide(props) {
 					""
 				)}
 
-				{b_6.length != 0 ? (
+				{b_6.length !== 0 ? (
 					<img
 						src={brain_6}
 						alt=""
@@ -202,7 +202,7 @@ function BrainSide(props) {
 					""
 				)}
 
-				{b_7.length != 0 ? (
+				{b_7.length !== 0 ? (
 					<img
 						src={brain_7}
 						alt=""

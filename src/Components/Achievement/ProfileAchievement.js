@@ -70,9 +70,9 @@ function ProfileAchievement(props) {
 				</div>
 				<div className="lefttab">
 					<div className=" list-group">
-						{achievements.length != 0 ? (
+						{achievements.length !== 0 ? (
 							<div>
-								{search.length != 0
+								{search.length !== 0
 									? searchAchievement.map((item, index) => (
 											<div
 												onClick={() => {
@@ -118,7 +118,7 @@ function ProfileAchievement(props) {
 					</div>
 				</div>
 			</div>
-			{showImages && achievementImages.length != 0 ? (
+			{showImages && achievementImages.length !== 0 ? (
 				<div>
 					<div className="d-flex justify-content-start align-items-center">
 						<i

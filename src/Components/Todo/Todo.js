@@ -228,7 +228,7 @@ function Todo(props) {
 									role="tabpanel"
 									aria-labelledby="todo-tab"
 								>
-									{todo_todo.length != 0 ? (
+									{todo_todo.length !== 0 ? (
 										<div className="input-group mb-3">
 											<input
 												type="text"
@@ -255,9 +255,9 @@ function Todo(props) {
 									)}
 									<div className="lefttab">
 										<div className=" list-group">
-											{todo_todo.length != 0 ? (
+											{todo_todo.length !== 0 ? (
 												<div>
-													{search1.length != 0
+													{search1.length !== 0
 														? searchTodo.map(
 																(
 																	item,
@@ -310,7 +310,7 @@ function Todo(props) {
 									aria-labelledby="doing-tab"
 								>
 									<div className="input-group mb-3">
-										{doing_todo.length != 0 ? (
+										{doing_todo.length !== 0 ? (
 											<div className="input-group mb-3">
 												<input
 													type="text"
@@ -338,9 +338,9 @@ function Todo(props) {
 									</div>
 									<div className="lefttab">
 										<div className=" list-group">
-											{doing_todo.length != 0 ? (
+											{doing_todo.length !== 0 ? (
 												<div>
-													{search2.length != 0
+													{search2.length !== 0
 														? searchDoing.map(
 																(
 																	item,
@@ -393,7 +393,7 @@ function Todo(props) {
 									aria-labelledby="completed-tab"
 								>
 									<div className="input-group mb-3">
-										{completed_todo.length != 0 ? (
+										{completed_todo.length !== 0 ? (
 											<div className="input-group mb-3">
 												<input
 													type="text"
@@ -423,9 +423,9 @@ function Todo(props) {
 									</div>
 									<div className="lefttab">
 										<div className=" list-group">
-											{completed_todo.length != 0 ? (
+											{completed_todo.length !== 0 ? (
 												<div>
-													{search3.length != 0
+													{search3.length !== 0
 														? searchCompleted.map(
 																(
 																	item,
@@ -655,7 +655,7 @@ function Todo(props) {
 									role="tabpanel"
 									aria-labelledby="todo-tab"
 								>
-									{todo_todo.length != 0 ? (
+									{todo_todo.length !== 0 ? (
 										<div className="input-group mb-3">
 											<input
 												type="text"
@@ -682,9 +682,9 @@ function Todo(props) {
 									)}
 									<div className="lefttab">
 										<div className=" list-group">
-											{todo_todo.length != 0 ? (
+											{todo_todo.length !== 0 ? (
 												<div>
-													{search1.length != 0
+													{search1.length !== 0
 														? searchTodo.map(
 																(
 																	item,
@@ -737,7 +737,7 @@ function Todo(props) {
 									aria-labelledby="doing-tab"
 								>
 									<div className="input-group mb-3">
-										{doing_todo.length != 0 ? (
+										{doing_todo.length !== 0 ? (
 											<div className="input-group mb-3">
 												<input
 													type="text"
@@ -765,9 +765,9 @@ function Todo(props) {
 									</div>
 									<div className="lefttab">
 										<div className=" list-group">
-											{doing_todo.length != 0 ? (
+											{doing_todo.length !== 0 ? (
 												<div>
-													{search2.length != 0
+													{search2.length !== 0
 														? searchDoing.map(
 																(
 																	item,
@@ -820,7 +820,7 @@ function Todo(props) {
 									aria-labelledby="completed-tab"
 								>
 									<div className="input-group mb-3">
-										{completed_todo.length != 0 ? (
+										{completed_todo.length !== 0 ? (
 											<div className="input-group mb-3">
 												<input
 													type="text"
@@ -850,9 +850,9 @@ function Todo(props) {
 									</div>
 									<div className="lefttab">
 										<div className=" list-group">
-											{completed_todo.length != 0 ? (
+											{completed_todo.length !== 0 ? (
 												<div>
-													{search3.length != 0
+													{search3.length !== 0
 														? searchCompleted.map(
 																(
 																	item,
