@@ -39,9 +39,20 @@ function Register() {
 						.set({
 							name: name,
 							user_id: user.uid,
+							profile_image: "",
 							email_id: email,
 							room_id: user.uid,
 							inspiration_images: [],
+							quote: "All of us do not have equal talent. But, all of us have an equal opportunity to develop our talents. - APJ Abdul Kalam",
+							brain_names: [
+								"Brain 1",
+								"Brain 2",
+								"Brain 3",
+								"Brain 4",
+								"Brain 5",
+								"Brain 6",
+								"Brain 7",
+							],
 							isCupboard: false,
 						})
 						.then(() => {

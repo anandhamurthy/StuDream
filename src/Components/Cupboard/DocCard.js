@@ -6,7 +6,7 @@ function DocCard(props) {
 	const deleteDoc = (doc_id) => {
 		const uid = getUser().uid;
 		return db
-			.collection("Todo")
+			.collection("User Items")
 			.doc(uid)
 			.collection("My Docs")
 			.doc(doc_id)
@@ -25,7 +25,9 @@ function DocCard(props) {
 				<div className="shadow border-0 p-4">
 					<div className="d-flex justify-content-between align-items-center">
 						<div className="d-flex justify-content-start align-items-center">
-							<i class="mx-2 far fa-file-pdf doc-icon"></i>
+							<a href={props.item.doc} target="_blank">
+								<i className="mx-2 far fa-file-pdf doc-icon"></i>
+							</a>
 							<div>
 								<p className="mx-3 my-0">
 									<b>{props.item.name}</b>
@@ -37,7 +39,7 @@ function DocCard(props) {
 						</div>
 						{props.friend_view ? (
 							<i
-								class="delete far fa-trash-alt"
+								className="delete far fa-trash-alt"
 								onClick={() => {
 									deleteDoc(props.item.doc_id);
 								}}

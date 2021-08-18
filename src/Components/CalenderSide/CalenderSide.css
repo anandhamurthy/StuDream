@@ -1,8 +1,9 @@
-section #cupboard {
+section #my_cupboard {
     position: absolute;
     right: 0%;
     bottom: 0;
     width: 20%;
+    cursor: pointer;
 }
 
 section #room_2 {
@@ -13,50 +14,55 @@ section #room_2 {
     width: 100%;
 }
 
-section #calendar {
+section #my_todo {
     position: absolute;
     top: 40%;
     left: 20%;
-    width: 15%;
+    width: 12%;
     cursor: pointer;
 }
 
-section #budha {
+section #my_time_table {
+    position: absolute;
+    top: 40%;
+    right: 25%;
+    width: 12%;
+    cursor: pointer;
+}
+
+section #my_budha {
     position: absolute;
     top: 30%;
     left: 35%;
     width: 25%;
 }
 
-#modal {
-    position: relative;
-    width: 100%;
-    height: 100vh;
-    background-color: white;
-    z-index: 100;
-}
-
-#todo {
-    width: 100%;
-    background-color: white;
-    height: 100vh;
-}
-
-#my_cupboard {
-    width: 100%;
-    background-color: white;
-    height: 100vh;
-}
-
-#close {
-    width: 2%;
-    right: 6%;
-    top: 6%;
-    z-index: 100;
-    position: absolute;
-    cursor: pointer;
-}
-
-#cupboard {
-    cursor: pointer;
+@media(max-width: 750px) {
+    section #my_cupboard {
+        position: absolute;
+        right: 0%;
+        bottom: 0;
+        width: 25%;
+        cursor: pointer;
+    }
+    section #my_todo {
+        position: absolute;
+        top: 40%;
+        left: 20%;
+        width: 15%;
+        cursor: pointer;
+    }
+    section #my_time_table {
+        position: absolute;
+        top: 40%;
+        right: 25%;
+        width: 15%;
+        cursor: pointer;
+    }
+    section #my_budha {
+        position: absolute;
+        top: 30%;
+        left: 30%;
+        width: 40%;
+    }
 }

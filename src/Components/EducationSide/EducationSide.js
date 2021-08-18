@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import "./EducationSide.css";
 
 import room_3 from "../Img/room_3.png";
-import medals from "../Img/awards.png";
-import computer from "../Img/comp.png";
-import exam from "../Img/exam.png";
+import medals from "../Img/achievement.gif";
+import computer from "../Img/computer.png";
+import exam from "../Img/edu.gif";
 import Education from "../Education/Education";
 import Achievement from "../Achievement/Achievement";
 
@@ -29,21 +29,23 @@ function EducationSide(props) {
 	};
 	return (
 		<body>
-			<section id="education_room">
+			<section>
 				<img src={room_3} alt="" id="room_3" />
 				<img
 					src={computer}
 					alt=""
-					id="computer"
+					id="my_computer"
 					onClick={openProfile}
 				/>
+
 				<img
 					src={medals}
 					alt=""
-					id="medals"
+					id="my_achievement"
 					onClick={openAchievement}
 				/>
-				<img src={exam} alt="" id="exam" onClick={openEducation} />
+
+				<img src={exam} alt="" id="my_exam" onClick={openEducation} />
 			</section>
 
 			{education ? (
@@ -55,7 +57,6 @@ function EducationSide(props) {
 						onClick={openEducation}
 					/>
 					<Education
-						id="education"
 						user_id={props.user_id}
 						friend_view={props.friend_view}
 					></Education>
@@ -68,7 +69,6 @@ function EducationSide(props) {
 				<div id="modal">
 					<img src={close} alt="" id="close" onClick={openProfile} />
 					<Profile
-						id="profile"
 						user_id={props.user_id}
 						friend_view={props.friend_view}
 					></Profile>
@@ -86,7 +86,6 @@ function EducationSide(props) {
 						onClick={openAchievement}
 					/>
 					<Achievement
-						id="achievement"
 						user_id={props.user_id}
 						friend_view={props.friend_view}
 					></Achievement>

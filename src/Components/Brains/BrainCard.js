@@ -8,7 +8,7 @@ function BrainCard(props) {
 	const deletePin = (pin_id) => {
 		const uid = getUser().uid;
 		return db
-			.collection("Todo")
+			.collection("User Items")
 			.doc(uid)
 			.collection("My Brains")
 			.doc(pin_id)
@@ -21,22 +21,22 @@ function BrainCard(props) {
 			});
 	};
 	return (
-		<li class="rb-item" id="rb-size">
-			<div class="timestamp">
-				<div class="d-flex justify-content-start align-items-center">
-					<i class="fas fa-thumbtack"></i>
+		<li className="rb-item" id="rb-size">
+			<div className="timestamp">
+				<div className="d-flex justify-content-start align-items-center">
+					<i className="fas fa-thumbtack"></i>
 					<p className="m-2">{props.item.date}</p>
 				</div>
 			</div>
-			<div class="item-title card border-0 shadow-sm p-2">
-				<div class="d-flex justify-content-between align-items-center">
+			<div className="item-title card border-0 shadow-sm p-2">
+				<div className="d-flex justify-content-between align-items-center">
 					<p className="m-1 ">
 						<i>{props.item.title}</i>
 					</p>
 
 					{props.friend_view ? (
 						<i
-							class="delete far fa-trash-alt"
+							className="delete far fa-trash-alt"
 							onClick={() => {
 								deletePin(props.item.pin_id);
 							}}

@@ -6,7 +6,8 @@ import { getUser } from "../Firebase/auth";
 
 import room_2 from "../Img/room_2.png";
 import cupboard from "../Img/cupboard.png";
-import calendar from "../Img/calendar.png";
+import todo_img from "../Img/todo.gif";
+import time_table_img from "../Img/timetable.gif";
 import budha from "../Img/budha.png";
 import Todo from "../Todo/Todo";
 import close from "../Img/close.png";
@@ -51,34 +52,33 @@ function CalenderSide(props) {
 
 	return (
 		<body>
-			<section id="calender_room">
+			<section>
 				<img src={room_2} alt="" id="room_2" onClick={openTimeTable} />
-				<img
-					src={cupboard}
-					alt=""
-					id="cupboard"
-					onClick={openCupboard}
-				/>
 
 				{lockCupboard ? (
-					<img src={cupboard} alt="" id="cupboard" />
+					<img src={cupboard} alt="" id="my_cupboard" />
 				) : (
 					<img
 						src={cupboard}
 						alt=""
-						id="cupboard"
+						id="my_cupboard"
 						onClick={openCupboard}
 					/>
 				)}
-				<img src={calendar} alt="" id="calendar" onClick={openTodo} />
-				<img src={budha} alt="" id="budha" />
+				<img src={todo_img} alt="" id="my_todo" onClick={openTodo} />
+				<img
+					src={time_table_img}
+					alt=""
+					id="my_time_table"
+					onClick={openTimeTable}
+				/>
+				<img src={budha} alt="" id="my_budha" />
 			</section>
 
 			{todo ? (
 				<div id="modal">
 					<img src={close} alt="" id="close" onClick={openTodo} />
 					<Todo
-						id="todo"
 						user_id={props.user_id}
 						friend_view={props.friend_view}
 					></Todo>
@@ -91,7 +91,6 @@ function CalenderSide(props) {
 				<div id="modal">
 					<img src={close} alt="" id="close" onClick={openCupboard} />
 					<Cupboard
-						id="my_cupboard"
 						user_id={props.user_id}
 						friend_view={props.friend_view}
 					></Cupboard>
@@ -108,7 +107,10 @@ function CalenderSide(props) {
 						id="close"
 						onClick={openTimeTable}
 					/>
-					<TimeTable id="my_cupboard"></TimeTable>
+					<TimeTable
+						user_id={props.user_id}
+						friend_view={props.friend_view}
+					></TimeTable>
 				</div>
 			) : (
 				""

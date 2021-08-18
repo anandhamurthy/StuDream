@@ -6,12 +6,13 @@ import BrainSide from "../BrainSide/BrainSide";
 
 import left from "../Img/left.png";
 import right from "../Img/right.png";
-import { useParams } from "react-router-dom";
+import { Route, useParams } from "react-router-dom";
 import { db } from "../Firebase/firebase";
 import { getUser } from "../Firebase/auth";
 
 import "./MyRoom.css";
 import PageNotFound from "../PageNotFound/PageNotFound";
+import Rotate from "../Rotate/Rotate";
 
 function MyRoom() {
 	const params = useParams();
@@ -34,7 +35,7 @@ function MyRoom() {
 	};
 
 	useEffect(() => {
-		db.collection("User ID")
+		db.collection("User IDs")
 			.doc(params.id)
 			.get()
 			.then((doc) => {
@@ -51,68 +52,91 @@ function MyRoom() {
 
 	return (
 		<div>
-			{verify ? (
-				<section id="my_room">
-					<img src={left} alt="" id="left" onClick={leftSwift} />
-					<img src={right} alt="" id="right" onClick={rightSwift} />
-
-					<div>
-						{(() => {
-							switch (my_view) {
-								case 1:
-									return (
-										<InspirationSide
-											user_id={params.id}
-											friend_view={
-												params.id === getUser().uid
-											}
-										></InspirationSide>
-									);
-								case 2:
-									return (
-										<CalenderSide
-											user_id={params.id}
-											friend_view={
-												params.id === getUser().uid
-											}
-										></CalenderSide>
-									);
-								case 3:
-									return (
-										<EducationSide
-											user_id={params.id}
-											friend_view={
-												params.id === getUser().uid
-											}
-										></EducationSide>
-									);
-								case 4:
-									return (
-										<BrainSide
-											user_id={params.id}
-											friend_view={
-												params.id === getUser().uid
-											}
-										></BrainSide>
-									);
-								default:
-									return (
-										<InspirationSide
-											user_id={params.id}
-											friend_view={
-												params.id === getUser().uid
-											}
-										></InspirationSide>
-									);
-							}
-						})()}
-					</div>
-				</section>
-			) : (
+			<div className="d-none d-sm-block">
 				<div>
-					<PageNotFound></PageNotFound>
+					{verify ? (
+						<section id="my_room">
+							<img
+								src={left}
+								alt=""
+								id="left"
+								onClick={leftSwift}
+							/>
+							<img
+								src={right}
+								alt=""
+								id="right"
+								onClick={rightSwift}
+							/>
+
+							<div>
+								{(() => {
+									switch (my_view) {
+										case 1:
+											return (
+												<InspirationSide
+													user_id={params.id}
+													friend_view={
+														params.id ===
+														getUser().uid
+													}
+												></InspirationSide>
+											);
+										case 2:
+											return (
+												<CalenderSide
+													user_id={params.id}
+													friend_view={
+														params.id ===
+														getUser().uid
+													}
+												></CalenderSide>
+											);
+										case 3:
+											return (
+												<EducationSide
+													user_id={params.id}
+													friend_view={
+														params.id ===
+														getUser().uid
+													}
+												></EducationSide>
+											);
+										case 4:
+											return (
+												<BrainSide
+													user_id={params.id}
+													friend_view={
+														params.id ===
+														getUser().uid
+													}
+												></BrainSide>
+											);
+										default:
+											return (
+												<InspirationSide
+													user_id={params.id}
+													friend_view={
+														params.id ===
+														getUser().uid
+													}
+												></InspirationSide>
+											);
+									}
+								})()}
+							</div>
+						</section>
+					) : (
+						<div>
+							<PageNotFound></PageNotFound>
+						</div>
+					)}
 				</div>
-			)}
+			</div>
+
+			<div className="m-auto d-block d-sm-none">
+				<Rotate></Rotate>
+			</div>
 		</div>
 	);
 }

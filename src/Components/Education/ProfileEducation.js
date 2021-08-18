@@ -25,7 +25,7 @@ function ProfileEducation(props) {
 	useEffect(() => {
 		const uid = getUser().uid;
 		return db
-			.collection("Todo")
+			.collection("User Items")
 			.doc(props.user_id)
 			.collection("My Exams")
 			.onSnapshot((snapshot) => {
@@ -40,7 +40,7 @@ function ProfileEducation(props) {
 	function getSubjectMarks(exam_id) {
 		changeMyTab();
 		const uid = getUser().uid;
-		db.collection("Todo")
+		db.collection("User Items")
 			.doc(props.user_id)
 			.collection("My Subjects")
 			.onSnapshot((snapshot) => {
@@ -107,7 +107,7 @@ function ProfileEducation(props) {
 							<div className="d-flex justify-content-start align-items-center">
 								<i
 									onClick={changeMyTab}
-									class="back fas fa-arrow-left"
+									className="back fas fa-arrow-left"
 								></i>
 								<h3 className="m-2 text-dark">My Marks</h3>
 							</div>

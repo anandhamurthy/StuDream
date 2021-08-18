@@ -6,7 +6,7 @@ function BookCard(props) {
 	const deleteBook = (book_id) => {
 		const uid = getUser().uid;
 		return db
-			.collection("Todo")
+			.collection("User Items")
 			.doc(uid)
 			.collection("My Books")
 			.doc(book_id)
@@ -24,7 +24,9 @@ function BookCard(props) {
 				<div className="shadow border-0 p-4">
 					<div className="d-flex justify-content-between align-items-center">
 						<div className="d-flex justify-content-start align-items-center">
-							<i class="mx-2 fas fa-book book-icon"></i>
+							<a href={props.item.book} target="_blank">
+								<i className="mx-2 fas fa-book book-icon"></i>
+							</a>
 							<div>
 								<p className="mx-3 my-0">
 									<b>{props.item.name}</b>
@@ -36,7 +38,7 @@ function BookCard(props) {
 						</div>
 						{props.friend_view ? (
 							<i
-								class="delete far fa-trash-alt"
+								className="delete far fa-trash-alt"
 								onClick={() => {
 									deleteBook(props.item.book_id);
 								}}

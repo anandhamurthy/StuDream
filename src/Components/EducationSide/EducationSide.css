@@ -6,7 +6,7 @@ section #room_3 {
     width: 100%;
 }
 
-section #computer {
+section #my_computer {
     position: absolute;
     bottom: 0;
     left: 35%;
@@ -14,7 +14,7 @@ section #computer {
     cursor: pointer;
 }
 
-section #medals {
+section #my_achievement {
     position: absolute;
     top: 22%;
     right: 12%;
@@ -22,31 +22,34 @@ section #medals {
     cursor: pointer;
 }
 
-section #exam {
+section #my_exam {
     position: absolute;
     top: 22%;
-    left: 12%;
-    width: 14%;
+    left: 15%;
+    width: 12%;
     cursor: pointer;
 }
 
-#close {
-    width: 2%;
-    right: 6%;
-    top: 6%;
-    z-index: 100;
-    position: absolute;
-    cursor: pointer;
-}
-
-#education {
-    width: 100%;
-    background-color: white;
-    height: 100vh;
-}
-
-#profile {
-    width: 100%;
-    background-color: white;
-    height: 100vh;
+@media(max-width: 750px) {
+    section #my_computer {
+        position: absolute;
+        bottom: 0;
+        left: 30%;
+        width: 40%;
+        cursor: pointer;
+    }
+    section #my_achievement {
+        position: absolute;
+        top: 22%;
+        right: 12%;
+        width: 20%;
+        cursor: pointer;
+    }
+    section #my_exam {
+        position: absolute;
+        top: 22%;
+        left: 15%;
+        width: 16%;
+        cursor: pointer;
+    }
 }

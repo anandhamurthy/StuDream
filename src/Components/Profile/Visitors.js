@@ -12,7 +12,7 @@ function Visitors(props) {
 	useEffect(() => {
 		const uid = getUser().uid;
 		return db
-			.collection("Todo")
+			.collection("User Items")
 			.doc(props.user_id)
 			.collection("My Visitors")
 			.onSnapshot((snapshot) => {

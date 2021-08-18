@@ -7,7 +7,6 @@ import "./Todo.css";
 import TodoCard from "./TodoCard";
 
 import Empty from "../Empty/Empty";
-import ProfileTodo from "./ProfileTodo";
 
 function Todo(props) {
 	const [title, setTitle] = useState("");
@@ -30,7 +29,7 @@ function Todo(props) {
 	useEffect(() => {
 		const uid = getUser().uid;
 		return db
-			.collection("Todo")
+			.collection("User Items")
 			.doc(props.user_id)
 			.collection("My Todos")
 			.onSnapshot((snapshot) => {
@@ -61,7 +60,9 @@ function Todo(props) {
 			setSearchTodo(todo_todo);
 			return;
 		}
-		const result = todo_todo.filter((item) => item.title.includes(search1));
+		const result = todo_todo.filter((item) =>
+			item.title.toLowerCase().includes(search1.toLowerCase())
+		);
 		setSearchTodo(result);
 	};
 
@@ -76,7 +77,7 @@ function Todo(props) {
 			return;
 		}
 		const result = doing_todo.filter((item) =>
-			item.title.includes(search2)
+			item.title.toLowerCase().includes(search2.toLowerCase())
 		);
 		setSearchDoing(result);
 	};
@@ -92,7 +93,7 @@ function Todo(props) {
 			return;
 		}
 		const result = completed_todo.filter((item) =>
-			item.title.includes(search3)
+			item.title.toLowerCase().includes(search3.toLowerCase())
 		);
 		setSearchCompleted(result);
 	};
@@ -127,12 +128,12 @@ function Todo(props) {
 		var user = getUser();
 		console.log(user.uid);
 		const key = db
-			.collection("Todo")
+			.collection("User Items")
 			.doc(user.uid)
 			.collection("My Todos")
 			.doc().id;
 		return db
-			.collection("Todo")
+			.collection("User Items")
 			.doc(user.uid)
 			.collection("My Todos")
 			.doc(key)
@@ -266,6 +267,12 @@ function Todo(props) {
 																		item={
 																			item
 																		}
+																		user_id={
+																			props.user_id
+																		}
+																		friend_view={
+																			props.friend_view
+																		}
 																	></TodoCard>
 																)
 														  )
@@ -277,6 +284,12 @@ function Todo(props) {
 																	<TodoCard
 																		item={
 																			item
+																		}
+																		user_id={
+																			props.user_id
+																		}
+																		friend_view={
+																			props.friend_view
 																		}
 																	></TodoCard>
 																)
@@ -337,6 +350,12 @@ function Todo(props) {
 																		item={
 																			item
 																		}
+																		user_id={
+																			props.user_id
+																		}
+																		friend_view={
+																			props.friend_view
+																		}
 																	></TodoCard>
 																)
 														  )
@@ -348,6 +367,12 @@ function Todo(props) {
 																	<TodoCard
 																		item={
 																			item
+																		}
+																		user_id={
+																			props.user_id
+																		}
+																		friend_view={
+																			props.friend_view
 																		}
 																	></TodoCard>
 																)
@@ -410,6 +435,12 @@ function Todo(props) {
 																		item={
 																			item
 																		}
+																		user_id={
+																			props.user_id
+																		}
+																		friend_view={
+																			props.friend_view
+																		}
 																	></TodoCard>
 																)
 														  )
@@ -421,6 +452,12 @@ function Todo(props) {
 																	<TodoCard
 																		item={
 																			item
+																		}
+																		user_id={
+																			props.user_id
+																		}
+																		friend_view={
+																			props.friend_view
 																		}
 																	></TodoCard>
 																)
@@ -554,7 +591,7 @@ function Todo(props) {
 		<div className="p-5 container-fluid">
 			<div className="d-flex justify-content-start align-items-center">
 				<i className="fas fa-list"></i>
-				<h3 className="m-2 text-dark">My Todo</h3>
+				<h3 className="m-2 text-dark">Todo</h3>
 			</div>
 
 			<div className="row align-items-center">

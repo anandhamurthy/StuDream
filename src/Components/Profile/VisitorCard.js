@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { db } from "../Firebase/firebase";
 import { getUser } from "../Firebase/auth";
 
+import finger_print from "../Img/finger_print.png";
+
 function VisitorCard(props) {
 	const [name, setName] = useState("");
 	const [date, setDate] = useState("");
@@ -16,18 +18,6 @@ function VisitorCard(props) {
 			.then((doc) => {
 				if (doc.exists) {
 					setName(doc.data().name);
-					let d = doc.data().visitor_date;
-					var datestring =
-						("0" + d.getDate()).slice(-2) +
-						"-" +
-						("0" + (d.getMonth() + 1)).slice(-2) +
-						"-" +
-						d.getFullYear() +
-						" " +
-						("0" + d.getHours()).slice(-2) +
-						":" +
-						("0" + d.getMinutes()).slice(-2);
-					setDate(datestring);
 				} else {
 					console.log("No such document!");
 				}
@@ -38,16 +28,21 @@ function VisitorCard(props) {
 	}, []);
 	return (
 		<div>
-			<div className="visitor-card m-2">
-				<div className="shadow border-0 p-4">
+			<div id="card-2" className="visitor-card m-2">
+				<div className="shadow-sm border-0 p-4">
 					<div className="d-flex justify-content-between align-items-center">
 						<div className="d-flex justify-content-start align-items-center">
+							<img
+								src={finger_print}
+								alt=""
+								className="visitor_finger_print"
+							></img>
 							<div>
 								<p className="mx-2 my-0">
 									<b>{name}</b>
 								</p>
 								<p className="mx-2 my-0">
-									<b>{date}</b>
+									<b>{props.item.visitor_date}</b>
 								</p>
 							</div>
 						</div>

@@ -23,13 +23,11 @@ function Education(props) {
 	const [subjectName, setSubjectName] = useState("");
 	const [subjectTotalMark, setSubjectTotalMark] = useState("");
 	const [subjectMark, setSubjectMark] = useState("");
-	const [examID, setExamID] = useState("");
+	const [examID, setExamID] = useState("Choose Exam");
 
 	const [exams, setExams] = useState([]);
 	const [subjects, setSubjects] = useState([]);
 	const [error, setError] = useState(null);
-
-	const [search, setSearch] = useState([]);
 
 	function changeMyTab() {
 		setChangeTab(!changeTab);
@@ -38,7 +36,7 @@ function Education(props) {
 	useEffect(() => {
 		const uid = getUser().uid;
 		return db
-			.collection("Todo")
+			.collection("User Items")
 			.doc(props.user_id)
 			.collection("My Exams")
 			.onSnapshot((snapshot) => {
@@ -53,7 +51,7 @@ function Education(props) {
 	function getSubjectMarks(exam_id) {
 		changeMyTab();
 		const uid = getUser().uid;
-		db.collection("Todo")
+		db.collection("User Items")
 			.doc(props.user_id)
 			.collection("My Subjects")
 			.onSnapshot((snapshot) => {
@@ -95,12 +93,12 @@ function Education(props) {
 		var user = getUser();
 		console.log(user.uid);
 		const key = db
-			.collection("Todo")
+			.collection("User Items")
 			.doc(user.uid)
 			.collection("My Exams")
 			.doc().id;
 		return db
-			.collection("Todo")
+			.collection("User Items")
 			.doc(user.uid)
 			.collection("My Exams")
 			.doc(key)
@@ -114,6 +112,7 @@ function Education(props) {
 				console.log("Document successfully written!");
 				setExamDate("");
 				setExamName("");
+				setError(null);
 				submitButton.disabled = false;
 			})
 			.catch((error) => {
@@ -140,7 +139,7 @@ function Education(props) {
 			return;
 		}
 
-		if (examID === "Choose Type") {
+		if (examID === "Choose Exam") {
 			setError("Enter Exam ID..");
 			return;
 		}
@@ -152,12 +151,12 @@ function Education(props) {
 		var user = getUser();
 		console.log(user.uid);
 		const key = db
-			.collection("Todo")
+			.collection("User Items")
 			.doc(user.uid)
 			.collection("My Subjects")
 			.doc().id;
 		return db
-			.collection("Todo")
+			.collection("User Items")
 			.doc(user.uid)
 			.collection("My Subjects")
 			.doc(key)
@@ -174,7 +173,8 @@ function Education(props) {
 				setSubjectName("");
 				setSubjectTotalMark("");
 				setSubjectMark("");
-
+				setError(null);
+				setExamID("Choose Exam");
 				submitButton.disabled = false;
 			})
 			.catch((error) => {
@@ -186,7 +186,7 @@ function Education(props) {
 	return props.friend_view ? (
 		<div className="p-5 container-fluid">
 			<div className="d-flex justify-content-start align-items-center">
-				<i class="fas fa-user-graduate"></i>
+				<i className="fas fa-user-graduate"></i>
 				<h3 className="m-2 text-dark">My Education</h3>
 			</div>
 
@@ -238,7 +238,7 @@ function Education(props) {
 										<div className="d-flex justify-content-start align-items-center">
 											<i
 												onClick={changeMyTab}
-												class="fas fa-arrow-left"
+												className="back fas fa-arrow-left"
 											></i>
 											<h3 className="m-2 text-dark">
 												My Marks
@@ -312,7 +312,6 @@ function Education(props) {
 									<select
 										className="custom-select shadow rounded-right border-0 form-control"
 										id="priority"
-										required
 										onChange={(event) =>
 											setType(event.target.value)
 										}
@@ -330,12 +329,13 @@ function Education(props) {
 												className="shadow rounded-left border-0 input-group-text bg-white"
 												id="basic-addon1"
 											>
-												<i class="fas fa-signature"></i>
+												<i className="fas fa-signature"></i>
 											</span>
 											<input
 												type="text"
 												className="shadow rounded-right border-0 form-control"
 												placeholder="Exam Name"
+												value={examName}
 												onChange={(event) =>
 													setExamName(
 														event.target.value
@@ -349,12 +349,13 @@ function Education(props) {
 												className="shadow rounded-left border-0 input-group-text bg-white"
 												id="basic-addon1"
 											>
-												<i class="far fa-calendar"></i>
+												<i className="far fa-calendar"></i>
 											</span>
 											<input
-												type="datetime-local"
+												type="date"
 												className="shadow rounded-right border-0 form-control"
 												placeholder="Exam Date"
+												value={examDate}
 												onChange={(event) =>
 													setExamDate(
 														event.target.value
@@ -389,6 +390,7 @@ function Education(props) {
 												className="custom-select shadow rounded-right border-0 form-control"
 												id="exam-id"
 												required
+												value={examID}
 												onChange={(event) =>
 													setExamID(
 														event.target.value
@@ -396,7 +398,7 @@ function Education(props) {
 												}
 											>
 												<option selected>
-													Choose Type
+													Choose Exam
 												</option>
 												{exams.map((user, index) => (
 													<option
@@ -412,12 +414,13 @@ function Education(props) {
 												className="shadow rounded-left border-0 input-group-text bg-white"
 												id="basic-addon1"
 											>
-												<i class="fas fa-check"></i>
+												<i className="fas fa-check"></i>
 											</span>
 											<input
 												type="text"
 												className="shadow rounded-right border-0 form-control"
 												placeholder="Subject Name"
+												value={subjectName}
 												onChange={(event) =>
 													setSubjectName(
 														event.target.value
@@ -430,12 +433,13 @@ function Education(props) {
 												className="shadow rounded-left border-0 input-group-text bg-white"
 												id="basic-addon1"
 											>
-												<i class="fas fa-check"></i>
+												<i className="fas fa-check"></i>
 											</span>
 											<input
 												type="number"
 												className="shadow rounded-right border-0 form-control"
 												placeholder="Subject Marks"
+												value={subjectMark}
 												onChange={(event) =>
 													setSubjectMark(
 														event.target.value
@@ -449,12 +453,13 @@ function Education(props) {
 												className="shadow rounded-left border-0 input-group-text bg-white"
 												id="basic-addon1"
 											>
-												<i class="fas fa-check"></i>
+												<i className="fas fa-check"></i>
 											</span>
 											<input
 												type="number"
 												className="shadow rounded-right border-0 form-control"
 												placeholder="Subject Total Marks"
+												value={subjectTotalMark}
 												onChange={(event) =>
 													setSubjectTotalMark(
 														event.target.value
@@ -462,7 +467,7 @@ function Education(props) {
 												}
 											/>
 										</div>
-
+										{error}
 										<div className="row">
 											<div className="col-6">
 												<button
@@ -485,8 +490,8 @@ function Education(props) {
 	) : (
 		<div className="p-5 container-fluid">
 			<div className="d-flex justify-content-start align-items-center">
-				<i class="fas fa-user-graduate"></i>
-				<h3 className="m-2 text-dark">My Education</h3>
+				<i className="fas fa-user-graduate"></i>
+				<h3 className="m-2 text-dark">Education</h3>
 			</div>
 
 			<div className="row align-items-center">
@@ -537,10 +542,10 @@ function Education(props) {
 										<div className="d-flex justify-content-start align-items-center">
 											<i
 												onClick={changeMyTab}
-												class="fas fa-arrow-left"
+												className="back fas fa-arrow-left"
 											></i>
 											<h3 className="m-2 text-dark">
-												My Marks
+												Marks
 											</h3>
 										</div>
 										<div className="lefttab">

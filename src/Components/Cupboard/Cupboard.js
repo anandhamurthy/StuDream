@@ -35,10 +35,18 @@ function Cupboard(props) {
 	const [progress, setProgress] = useState(0);
 	const [file_type, setFileType] = useState("Book");
 
+	const [albumImages, setAlbumImages] = useState([]);
+	const [showImages, setShowImages] = useState(false);
+
+	function changeMyTab(album_images, show_val) {
+		setShowImages(show_val);
+		setAlbumImages(album_images);
+	}
+
 	useEffect(() => {
 		const uid = getUser().uid;
 		return db
-			.collection("Todo")
+			.collection("User Items")
 			.doc(props.user_id)
 			.collection("My Books")
 			.onSnapshot((snapshot) => {
@@ -53,7 +61,7 @@ function Cupboard(props) {
 	useEffect(() => {
 		const uid = getUser().uid;
 		return db
-			.collection("Todo")
+			.collection("User Items")
 			.doc(props.user_id)
 			.collection("My Docs")
 			.onSnapshot((snapshot) => {
@@ -68,7 +76,7 @@ function Cupboard(props) {
 	useEffect(() => {
 		const uid = getUser().uid;
 		return db
-			.collection("Todo")
+			.collection("User Items")
 			.doc(props.user_id)
 			.collection("My Albums")
 			.onSnapshot((snapshot) => {
@@ -104,7 +112,7 @@ function Cupboard(props) {
 		const promises = [];
 		book.map((book_item) => {
 			const uploadTask = storage
-				.ref(`Book/${book_item.name}`)
+				.ref(`Books/${book_item.name}`)
 				.put(book_item);
 			promises.push(uploadTask);
 			uploadTask.on(
@@ -120,7 +128,7 @@ function Cupboard(props) {
 				},
 				async () => {
 					await storage
-						.ref("Book")
+						.ref("Books")
 						.child(book_item.name)
 						.getDownloadURL()
 						.then((urls) => {
@@ -143,7 +151,7 @@ function Cupboard(props) {
 		setProgressBar(true);
 		doc.map((doc_item) => {
 			const uploadTask = storage
-				.ref(`Doc/${doc_item.name}`)
+				.ref(`Docs/${doc_item.name}`)
 				.put(doc_item);
 			promises.push(uploadTask);
 			uploadTask.on(
@@ -159,7 +167,7 @@ function Cupboard(props) {
 				},
 				async () => {
 					await storage
-						.ref("Doc")
+						.ref("Docs")
 						.child(doc_item.name)
 						.getDownloadURL()
 						.then((urls) => {
@@ -182,7 +190,7 @@ function Cupboard(props) {
 		setProgressBar(true);
 		album.map((album_item) => {
 			const uploadTask = storage
-				.ref(`image/${album_item.name}`)
+				.ref(`Albums/${album_item.name}`)
 				.put(album_item);
 			promises.push(uploadTask);
 			uploadTask.on(
@@ -198,7 +206,7 @@ function Cupboard(props) {
 				},
 				async () => {
 					await storage
-						.ref("image")
+						.ref("Albums")
 						.child(album_item.name)
 						.getDownloadURL()
 						.then((urls) => {
@@ -230,7 +238,7 @@ function Cupboard(props) {
 		}
 
 		if (urls.length === 0) {
-			setError("Attach Book..");
+			setError("Upload Book..");
 			return;
 		}
 
@@ -241,19 +249,19 @@ function Cupboard(props) {
 		var user = getUser();
 		console.log(user.uid);
 		const key = db
-			.collection("Todo")
+			.collection("User Items")
 			.doc(user.uid)
 			.collection("My Books")
 			.doc().id;
 		return db
-			.collection("Todo")
+			.collection("User Items")
 			.doc(user.uid)
 			.collection("My Books")
 			.doc(key)
 			.set({
 				name: name,
 				description: description,
-				book: urls,
+				book: urls[0],
 				user_id: user.uid,
 				book_id: key,
 			})
@@ -262,6 +270,7 @@ function Cupboard(props) {
 				setName("");
 				setDescription("");
 				setUrls("");
+				setError(null);
 				submitButton.disabled = false;
 			})
 			.catch((error) => {
@@ -284,7 +293,7 @@ function Cupboard(props) {
 		}
 
 		if (urls.length === 0) {
-			setError("Attach Document..");
+			setError("Upload Document..");
 			return;
 		}
 
@@ -295,19 +304,19 @@ function Cupboard(props) {
 		var user = getUser();
 		console.log(user.uid);
 		const key = db
-			.collection("Todo")
+			.collection("User Items")
 			.doc(user.uid)
 			.collection("My Docs")
 			.doc().id;
 		return db
-			.collection("Todo")
+			.collection("User Items")
 			.doc(user.uid)
 			.collection("My Docs")
 			.doc(key)
 			.set({
 				name: name,
 				description: description,
-				doc: urls,
+				doc: urls[0],
 				user_id: user.uid,
 				doc_id: key,
 			})
@@ -316,6 +325,7 @@ function Cupboard(props) {
 				setName("");
 				setDescription("");
 				setUrls("");
+				setError(null);
 				submitButton.disabled = false;
 			})
 			.catch((error) => {
@@ -343,7 +353,7 @@ function Cupboard(props) {
 		}
 
 		if (urls.length === 0) {
-			setError("Attach Images..");
+			setError("Upload Images..");
 			return;
 		}
 
@@ -354,12 +364,12 @@ function Cupboard(props) {
 		var user = getUser();
 		console.log(user.uid);
 		const key = db
-			.collection("Todo")
+			.collection("User Items")
 			.doc(user.uid)
 			.collection("My Albums")
 			.doc().id;
 		return db
-			.collection("Todo")
+			.collection("User Items")
 			.doc(user.uid)
 			.collection("My Albums")
 			.doc(key)
@@ -375,6 +385,7 @@ function Cupboard(props) {
 				setName("");
 				setDescription("");
 				setUrls("");
+				setError(null);
 				submitButton.disabled = false;
 			})
 			.catch((error) => {
@@ -386,22 +397,22 @@ function Cupboard(props) {
 	return props.friend_view ? (
 		<div className="p-5 container-fluid">
 			<div className="d-flex justify-content-start align-items-center">
-				<i class="fas fa-door-closed"></i>
+				<i className="fas fa-door-closed"></i>
 				<h3 className="m-2 text-dark">My Cupboard</h3>
 			</div>
 
 			<div className="row align-items-center">
 				<div className="p-2 col-lg-6 order-lg-1 mt-5 mt-lg-0">
-					<div className=" shadow border-0 card p-4">
+					<div className="shadow border-0 card p-4">
 						<div>
 							<ul
-								class="nav nav-tabs my-2"
+								className="nav nav-tabs my-2"
 								id="myTab"
 								role="tablist"
 							>
-								<li class="nav-item" role="presentation">
+								<li className="nav-item" role="presentation">
 									<button
-										class="nav-link active"
+										className="nav-link active"
 										id="book-tab"
 										data-bs-toggle="tab"
 										data-bs-target="#book"
@@ -413,9 +424,9 @@ function Cupboard(props) {
 										Books
 									</button>
 								</li>
-								<li class="nav-item" role="presentation">
+								<li className="nav-item" role="presentation">
 									<button
-										class="nav-link"
+										className="nav-link"
 										id="document-tab"
 										data-bs-toggle="tab"
 										data-bs-target="#document"
@@ -427,9 +438,9 @@ function Cupboard(props) {
 										Documents
 									</button>
 								</li>
-								<li class="nav-item" role="presentation">
+								<li className="nav-item" role="presentation">
 									<button
-										class="nav-link"
+										className="nav-link"
 										id="album-tab"
 										data-bs-toggle="tab"
 										data-bs-target="#album"
@@ -445,9 +456,9 @@ function Cupboard(props) {
 						</div>
 
 						<div>
-							<div class="tab-content" id="myTabContent">
+							<div className="tab-content" id="myTabContent">
 								<div
-									class="tab-pane fade show active"
+									className="tab-pane fade show active"
 									id="book"
 									role="tabpanel"
 									aria-labelledby="book-tab"
@@ -459,6 +470,12 @@ function Cupboard(props) {
 													<div>
 														<BookCard
 															item={book}
+															user_id={
+																props.user_id
+															}
+															friend_view={
+																props.friend_view
+															}
 														></BookCard>
 													</div>
 												))
@@ -471,7 +488,7 @@ function Cupboard(props) {
 									</div>
 								</div>
 								<div
-									class="tab-pane fade"
+									className="tab-pane fade"
 									id="document"
 									role="tabpanel"
 									aria-labelledby="document-tab"
@@ -483,6 +500,12 @@ function Cupboard(props) {
 													<div>
 														<DocCard
 															item={doc}
+															user_id={
+																props.user_id
+															}
+															friend_view={
+																props.friend_view
+															}
 														></DocCard>
 													</div>
 												))
@@ -495,7 +518,7 @@ function Cupboard(props) {
 									</div>
 								</div>
 								<div
-									class="tab-pane fade"
+									className="tab-pane fade"
 									id="album"
 									role="tabpanel"
 									aria-labelledby="album-tab"
@@ -504,9 +527,22 @@ function Cupboard(props) {
 										<div className=" list-group">
 											{myAlbum.length ? (
 												myAlbum.map((album, index) => (
-													<div>
+													<div
+														onClick={() => {
+															changeMyTab(
+																album.album,
+																true
+															);
+														}}
+													>
 														<AlbumCard
 															item={album}
+															user_id={
+																props.user_id
+															}
+															friend_view={
+																props.friend_view
+															}
 														></AlbumCard>
 													</div>
 												))
@@ -564,7 +600,7 @@ function Cupboard(props) {
 										className="shadow rounded-left border-0 input-group-text bg-white"
 										id="basic-addon1"
 									>
-										<i class="far fa-file"></i>
+										<i className="far fa-file"></i>
 									</span>
 									<input
 										type="text"
@@ -581,7 +617,7 @@ function Cupboard(props) {
 										className="shadow rounded-left border-0 input-group-text bg-white"
 										id="basic-addon1"
 									>
-										<i class="far fa-file"></i>
+										<i className="far fa-file"></i>
 									</span>
 									<input
 										type="text"
@@ -638,10 +674,10 @@ function Cupboard(props) {
 														className="shadow rounded-left border-0 input-group-text bg-white"
 														id="basic-addon1"
 													>
-														<i class="far fa-file"></i>
+														<i className="far fa-file"></i>
 													</span>
 													<input
-														type="datetime-local"
+														type="date"
 														className="shadow rounded-right border-0 form-control"
 														placeholder="Date"
 														onChange={(event) =>
@@ -766,12 +802,49 @@ function Cupboard(props) {
 					</div>
 				</div>
 			</div>
+
+			{showImages && albumImages.length != 0 ? (
+				<div>
+					<div className="d-flex justify-content-start align-items-center">
+						<i
+							onClick={() => {
+								changeMyTab([], false);
+							}}
+							className="back fas fa-arrow-left"
+						></i>
+						<h5 className="m-2 text-dark">Album Photos</h5>
+					</div>
+					<div className="shadow card p-4 border-0">
+						<div className="lefttab">
+							<div className=" list-group">
+								<div className="d-flex justify-content-between flex-wrap">
+									{albumImages.length ? (
+										albumImages.map((img_item, index) => (
+											<img
+												className="achievement-img img-fluid rounded shadow-sm"
+												src={img_item}
+												alt=""
+											></img>
+										))
+									) : (
+										<div className="m-auto p-5 d-flex align-items-center justify-content-center">
+											<Empty></Empty>
+										</div>
+									)}
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			) : (
+				""
+			)}
 		</div>
 	) : (
 		<div className="p-5 container-fluid">
 			<div className="d-flex justify-content-start align-items-center">
-				<i class="fas fa-door-closed"></i>
-				<h3 className="m-2 text-dark">My Cupboard</h3>
+				<i className="fas fa-door-closed"></i>
+				<h3 className="m-2 text-dark">Cupboard</h3>
 			</div>
 
 			<div className="row align-items-center">
@@ -779,13 +852,13 @@ function Cupboard(props) {
 					<div className=" shadow border-0 card p-4">
 						<div>
 							<ul
-								class="nav nav-tabs my-2"
+								className="nav nav-tabs my-2"
 								id="myTab"
 								role="tablist"
 							>
-								<li class="nav-item" role="presentation">
+								<li className="nav-item" role="presentation">
 									<button
-										class="nav-link active"
+										className="nav-link active"
 										id="book-tab"
 										data-bs-toggle="tab"
 										data-bs-target="#book"
@@ -797,9 +870,9 @@ function Cupboard(props) {
 										Books
 									</button>
 								</li>
-								<li class="nav-item" role="presentation">
+								<li className="nav-item" role="presentation">
 									<button
-										class="nav-link"
+										className="nav-link"
 										id="document-tab"
 										data-bs-toggle="tab"
 										data-bs-target="#document"
@@ -811,9 +884,9 @@ function Cupboard(props) {
 										Documents
 									</button>
 								</li>
-								<li class="nav-item" role="presentation">
+								<li className="nav-item" role="presentation">
 									<button
-										class="nav-link"
+										className="nav-link"
 										id="album-tab"
 										data-bs-toggle="tab"
 										data-bs-target="#album"
@@ -829,9 +902,9 @@ function Cupboard(props) {
 						</div>
 
 						<div>
-							<div class="tab-content" id="myTabContent">
+							<div className="tab-content" id="myTabContent">
 								<div
-									class="tab-pane fade show active"
+									className="tab-pane fade show active"
 									id="book"
 									role="tabpanel"
 									aria-labelledby="book-tab"
@@ -861,7 +934,7 @@ function Cupboard(props) {
 									</div>
 								</div>
 								<div
-									class="tab-pane fade"
+									className="tab-pane fade"
 									id="document"
 									role="tabpanel"
 									aria-labelledby="document-tab"
@@ -891,7 +964,7 @@ function Cupboard(props) {
 									</div>
 								</div>
 								<div
-									class="tab-pane fade"
+									className="tab-pane fade"
 									id="album"
 									role="tabpanel"
 									aria-labelledby="album-tab"
@@ -900,7 +973,14 @@ function Cupboard(props) {
 										<div className=" list-group">
 											{myAlbum.length ? (
 												myAlbum.map((album, index) => (
-													<div>
+													<div
+														onClick={() => {
+															changeMyTab(
+																album.album,
+																true
+															);
+														}}
+													>
 														<AlbumCard
 															item={album}
 															user_id={
@@ -925,6 +1005,43 @@ function Cupboard(props) {
 					</div>
 				</div>
 			</div>
+
+			{showImages && albumImages.length != 0 ? (
+				<div>
+					<div className="d-flex justify-content-start align-items-center">
+						<i
+							onClick={() => {
+								changeMyTab([], false);
+							}}
+							className="back fas fa-arrow-left"
+						></i>
+						<h5 className="m-2 text-dark">Album Photos</h5>
+					</div>
+					<div className="shadow card p-4 border-0">
+						<div className="lefttab">
+							<div className=" list-group">
+								<div className="d-flex justify-content-between flex-wrap">
+									{albumImages.length ? (
+										albumImages.map((img_item, index) => (
+											<img
+												className="achievement-img img-fluid rounded shadow-sm"
+												src={img_item}
+												alt=""
+											></img>
+										))
+									) : (
+										<div className="m-auto p-5 d-flex align-items-center justify-content-center">
+											<Empty></Empty>
+										</div>
+									)}
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			) : (
+				""
+			)}
 		</div>
 	);
 }

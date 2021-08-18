@@ -3,14 +3,19 @@ import React, { useState, useEffect } from "react";
 import { db } from "../Firebase/firebase";
 import { getUser } from "../Firebase/auth";
 
-import empty from "../Img/empty-box.gif";
-
 import "./Brains.css";
 import BrainCard from "./BrainCard";
 import Empty from "../Empty/Empty";
 
 function ProfileBrain(props) {
-	const [search, setSearch] = useState("");
+	const [search1, setSearch1] = useState("");
+	const [search2, setSearch2] = useState("");
+	const [search3, setSearch3] = useState("");
+	const [search4, setSearch4] = useState("");
+	const [search5, setSearch5] = useState("");
+	const [search6, setSearch6] = useState("");
+	const [search7, setSearch7] = useState("");
+
 	const [brain_1, setBrain1] = useState([]);
 	const [brain_2, setBrain2] = useState([]);
 	const [brain_3, setBrain3] = useState([]);
@@ -18,13 +23,39 @@ function ProfileBrain(props) {
 	const [brain_5, setBrain5] = useState([]);
 	const [brain_6, setBrain6] = useState([]);
 	const [brain_7, setBrain7] = useState([]);
-	const [search_brain, setSearchBrain] = useState([]);
+	const [searchBrain1, setSearchBrain1] = useState([]);
+	const [searchBrain2, setSearchBrain2] = useState([]);
+	const [searchBrain3, setSearchBrain3] = useState([]);
+	const [searchBrain4, setSearchBrain4] = useState([]);
+	const [searchBrain5, setSearchBrain5] = useState([]);
+	const [searchBrain6, setSearchBrain6] = useState([]);
+	const [searchBrain7, setSearchBrain7] = useState([]);
+
+	const [myBrain, setMyBrain] = useState([]);
 
 	useEffect(() => {
 		const uid = getUser().uid;
 		return db
-			.collection("Todo")
-			.doc(props.user_id)
+			.collection("Users")
+			.doc(uid)
+			.get()
+			.then((doc) => {
+				if (doc.exists) {
+					setMyBrain(doc.data().brain_names);
+				} else {
+					console.log("No such document!");
+				}
+			})
+			.catch((error) => {
+				console.log("Error getting document:", error);
+			});
+	}, []);
+
+	useEffect(() => {
+		const uid = getUser().uid;
+		return db
+			.collection("User Items")
+			.doc(uid)
 			.collection("My Brains")
 			.onSnapshot((snapshot) => {
 				const brain1 = [];
@@ -65,13 +96,125 @@ function ProfileBrain(props) {
 			});
 	}, []);
 
+	const onBrain1Search = async (event) => {
+		event.preventDefault();
+
+		setSearchBrain1(brain_1);
+
+		if (search1 === "") {
+			alert("Enter Something.");
+			setSearchBrain1(brain_1);
+			return;
+		}
+		const result = brain_1.filter((item) =>
+			item.title.toLowerCase().includes(search1.toLowerCase())
+		);
+		setSearchBrain1(result);
+	};
+
+	const onBrain2Search = async (event) => {
+		event.preventDefault();
+
+		setSearchBrain2(brain_2);
+
+		if (search2 === "") {
+			alert("Enter Something.");
+			setSearchBrain2(brain_2);
+			return;
+		}
+		const result = brain_2.filter((item) =>
+			item.title.toLowerCase().includes(search2.toLowerCase())
+		);
+		setSearchBrain2(result);
+	};
+
+	const onBrain3Search = async (event) => {
+		event.preventDefault();
+
+		setSearchBrain3(brain_3);
+
+		if (search3 === "") {
+			alert("Enter Something.");
+			setSearchBrain3(brain_3);
+			return;
+		}
+		const result = brain_3.filter((item) =>
+			item.title.toLowerCase().includes(search3.toLowerCase())
+		);
+		setSearchBrain3(result);
+	};
+
+	const onBrain4Search = async (event) => {
+		event.preventDefault();
+
+		setSearchBrain4(brain_4);
+
+		if (search4 === "") {
+			alert("Enter Something.");
+			setSearchBrain4(brain_4);
+			return;
+		}
+		const result = brain_4.filter((item) =>
+			item.title.toLowerCase().includes(search4.toLowerCase())
+		);
+		setSearchBrain4(result);
+	};
+
+	const onBrain5Search = async (event) => {
+		event.preventDefault();
+
+		setSearchBrain5(brain_5);
+
+		if (search5 === "") {
+			alert("Enter Something.");
+			setSearchBrain5(brain_5);
+			return;
+		}
+		const result = brain_5.filter((item) =>
+			item.title.toLowerCase().includes(search5.toLowerCase())
+		);
+		setSearchBrain5(result);
+	};
+
+	const onBrain6Search = async (event) => {
+		event.preventDefault();
+
+		setSearchBrain6(brain_6);
+
+		if (search6 === "") {
+			alert("Enter Something.");
+			setSearchBrain6(brain_6);
+			return;
+		}
+		const result = brain_6.filter((item) =>
+			item.title.toLowerCase().includes(search6.toLowerCase())
+		);
+		setSearchBrain6(result);
+	};
+
+	const onBrain7Search = async (event) => {
+		event.preventDefault();
+
+		setSearchBrain7(brain_7);
+
+		if (search7 === "") {
+			alert("Enter Something.");
+			setSearchBrain7(brain_7);
+			return;
+		}
+		const result = brain_7.filter((item) =>
+			item.title.toLowerCase().includes(search7.toLowerCase())
+		);
+		setSearchBrain7(result);
+	};
+
 	return (
 		<div className="border-0 card p-2">
 			<div>
-				<ul class="nav nav-tabs" id="myTab" role="tablist">
-					<li class="nav-item" role="presentation">
+				<ul className="nav nav-tabs" id="myTab" role="tablist">
+					<li className="nav-item" role="presentation">
 						<button
-							class="nav-link active"
+							className="nav-link active"
 							id="br1-tab"
 							data-bs-toggle="tab"
 							data-bs-target="#br1"
@@ -80,12 +223,12 @@ function ProfileBrain(props) {
 							aria-controls="br1"
 							aria-selected="true"
 						>
-							Brain 1
+							{myBrain[0]}
 						</button>
 					</li>
-					<li class="nav-item" role="presentation">
+					<li className="nav-item" role="presentation">
 						<button
-							class="nav-link"
+							className="nav-link"
 							id="br2-tab"
 							data-bs-toggle="tab"
 							data-bs-target="#br2"
@@ -94,12 +237,12 @@ function ProfileBrain(props) {
 							aria-controls="br2"
 							aria-selected="false"
 						>
-							Brain 2
+							{myBrain[1]}
 						</button>
 					</li>
-					<li class="nav-item" role="presentation">
+					<li className="nav-item" role="presentation">
 						<button
-							class="nav-link"
+							className="nav-link"
 							id="br3-tab"
 							data-bs-toggle="tab"
 							data-bs-target="#br3"
@@ -108,12 +251,12 @@ function ProfileBrain(props) {
 							aria-controls="br3"
 							aria-selected="false"
 						>
-							Brain 3
+							{myBrain[2]}
 						</button>
 					</li>
-					<li class="nav-item" role="presentation">
+					<li className="nav-item" role="presentation">
 						<button
-							class="nav-link"
+							className="nav-link"
 							id="br4-tab"
 							data-bs-toggle="tab"
 							data-bs-target="#br4"
@@ -122,12 +265,12 @@ function ProfileBrain(props) {
 							aria-controls="br4"
 							aria-selected="false"
 						>
-							Brain 4
+							{myBrain[3]}
 						</button>
 					</li>
-					<li class="nav-item" role="presentation">
+					<li className="nav-item" role="presentation">
 						<button
-							class="nav-link"
+							className="nav-link"
 							id="br5-tab"
 							data-bs-toggle="tab"
 							data-bs-target="#br5"
@@ -136,12 +279,12 @@ function ProfileBrain(props) {
 							aria-controls="br5"
 							aria-selected="false"
 						>
-							Brain 5
+							{myBrain[4]}
 						</button>
 					</li>
-					<li class="nav-item" role="presentation">
+					<li className="nav-item" role="presentation">
 						<button
-							class="nav-link"
+							className="nav-link"
 							id="br6-tab"
 							data-bs-toggle="tab"
 							data-bs-target="#br6"
@@ -150,12 +293,12 @@ function ProfileBrain(props) {
 							aria-controls="br6"
 							aria-selected="false"
 						>
-							Brain 6
+							{myBrain[5]}
 						</button>
 					</li>
-					<li class="nav-item" role="presentation">
+					<li className="nav-item" role="presentation">
 						<button
-							class="nav-link"
+							className="nav-link"
 							id="br7-tab"
 							data-bs-toggle="tab"
 							data-bs-target="#br7"
@@ -164,16 +307,16 @@ function ProfileBrain(props) {
 							aria-controls="br7"
 							aria-selected="false"
 						>
-							Brain 7
+							{myBrain[6]}
 						</button>
 					</li>
 				</ul>
 			</div>
 
 			<div>
-				<div class="tab-content" id="myTabContent">
+				<div className="tab-content" id="myTabContent">
 					<div
-						class="tab-pane fade show active"
+						className="tab-pane fade show active"
 						id="br1"
 						role="tabpanel"
 						aria-labelledby="br1-tab"
@@ -185,28 +328,31 @@ function ProfileBrain(props) {
 									className="shadow-sm rounded-right border-0 form-control"
 									placeholder="search.."
 									onChange={(event) =>
-										setSearch(event.target.value)
+										setSearch1(event.target.value)
 									}
 								/>
 								<span
 									className="shadow-sm rounded-left border-0 input-group-text bg-white"
 									id="basic-addon1"
 								>
-									<i className="fas fa-search"></i>
+									<i
+										className="fas fa-search"
+										onClick={onBrain1Search}
+									></i>
 								</span>
 							</div>
 						) : (
 							""
 						)}
 						<div className="brain-left-tab">
-							<div className=" list-group ">
+							<div className="list-group">
 								{brain_1.length != 0 ? (
 									<div>
-										{search.length != 0 ? (
-											<div class="rightbox brain-bg rounded mx-2">
-												<div class="rb-container">
-													<ul class="rb">
-														{search_brain.map(
+										{search1.length != 0 ? (
+											<div className="rightbox brain-bg rounded mx-2">
+												<div className="rb-container">
+													<ul className="rb">
+														{searchBrain1.map(
 															(item, index) => (
 																<BrainCard
 																	item={item}
@@ -223,9 +369,9 @@ function ProfileBrain(props) {
 												</div>
 											</div>
 										) : (
-											<div class="rightbox brain-bg rounded mx-2">
-												<div class="rb-container">
-													<ul class="rb">
+											<div className="rightbox brain-bg rounded mx-2">
+												<div className="rb-container">
+													<ul className="rb">
 														{brain_1.map(
 															(item, index) => (
 																<BrainCard
@@ -246,14 +392,14 @@ function ProfileBrain(props) {
 									</div>
 								) : (
 									<div className="m-auto p-5 d-flex align-items-center justify-content-center">
-										<img src={empty} width={"25%"} alt="" />
+										<Empty></Empty>
 									</div>
 								)}
 							</div>
 						</div>
 					</div>
 					<div
-						class="tab-pane fade"
+						className="tab-pane fade"
 						id="br2"
 						role="tabpanel"
 						aria-labelledby="br2-tab"
@@ -265,28 +411,31 @@ function ProfileBrain(props) {
 									className="shadow-sm rounded-right border-0 form-control"
 									placeholder="search.."
 									onChange={(event) =>
-										setSearch(event.target.value)
+										setSearch2(event.target.value)
 									}
 								/>
 								<span
 									className="shadow-sm rounded-left border-0 input-group-text bg-white"
 									id="basic-addon1"
 								>
-									<i className="fas fa-search"></i>
+									<i
+										className="fas fa-search"
+										onClick={onBrain2Search}
+									></i>
 								</span>
 							</div>
 						) : (
 							""
 						)}
-						<div className="brain-left-tab">
+						<div className="brain-left-tab ">
 							<div className=" list-group ">
 								{brain_2.length != 0 ? (
 									<div>
-										{search.length != 0 ? (
-											<div class="rightbox brain-bg rounded mx-2">
-												<div class="rb-container">
-													<ul class="rb">
-														{search_brain.map(
+										{search2.length != 0 ? (
+											<div className="rightbox brain-bg rounded mx-2">
+												<div className="rb-container">
+													<ul className="rb">
+														{searchBrain2.map(
 															(item, index) => (
 																<BrainCard
 																	item={item}
@@ -303,9 +452,9 @@ function ProfileBrain(props) {
 												</div>
 											</div>
 										) : (
-											<div class="rightbox brain-bg rounded mx-2">
-												<div class="rb-container">
-													<ul class="rb">
+											<div className="rightbox brain-bg rounded mx-2">
+												<div className="rb-container">
+													<ul className="rb">
 														{brain_2.map(
 															(item, index) => (
 																<BrainCard
@@ -331,7 +480,7 @@ function ProfileBrain(props) {
 						</div>
 					</div>
 					<div
-						class="tab-pane fade"
+						className="tab-pane fade"
 						id="br3"
 						role="tabpanel"
 						aria-labelledby="br3-tab"
@@ -343,28 +492,31 @@ function ProfileBrain(props) {
 									className="shadow-sm rounded-right border-0 form-control"
 									placeholder="search.."
 									onChange={(event) =>
-										setSearch(event.target.value)
+										setSearch3(event.target.value)
 									}
 								/>
 								<span
 									className="shadow-sm rounded-left border-0 input-group-text bg-white"
 									id="basic-addon1"
 								>
-									<i className="fas fa-search"></i>
+									<i
+										className="fas fa-search"
+										onClick={onBrain3Search}
+									></i>
 								</span>
 							</div>
 						) : (
 							""
 						)}
-						<div className="brain-left-tab">
-							<div className="list-group">
+						<div className="brain-left-tab ">
+							<div className=" list-group ">
 								{brain_3.length != 0 ? (
 									<div>
-										{search.length != 0 ? (
-											<div class="rightbox brain-bg rounded mx-2">
-												<div class="rb-container">
-													<ul class="rb">
-														{search_brain.map(
+										{search3.length != 0 ? (
+											<div className="rightbox brain-bg rounded mx-2">
+												<div className="rb-container">
+													<ul className="rb">
+														{searchBrain3.map(
 															(item, index) => (
 																<BrainCard
 																	item={item}
@@ -381,9 +533,9 @@ function ProfileBrain(props) {
 												</div>
 											</div>
 										) : (
-											<div class="rightbox brain-bg rounded mx-2">
-												<div class="rb-container">
-													<ul class="rb">
+											<div className="rightbox brain-bg rounded mx-2">
+												<div className="rb-container">
+													<ul className="rb">
 														{brain_3.map(
 															(item, index) => (
 																<BrainCard
@@ -409,7 +561,7 @@ function ProfileBrain(props) {
 						</div>
 					</div>
 					<div
-						class="tab-pane fade"
+						className="tab-pane fade"
 						id="br4"
 						role="tabpanel"
 						aria-labelledby="br4-tab"
@@ -421,28 +573,31 @@ function ProfileBrain(props) {
 									className="shadow-sm rounded-right border-0 form-control"
 									placeholder="search.."
 									onChange={(event) =>
-										setSearch(event.target.value)
+										setSearch4(event.target.value)
 									}
 								/>
 								<span
 									className="shadow-sm rounded-left border-0 input-group-text bg-white"
 									id="basic-addon1"
 								>
-									<i className="fas fa-search"></i>
+									<i
+										className="fas fa-search"
+										onClick={onBrain4Search}
+									></i>
 								</span>
 							</div>
 						) : (
 							""
 						)}
-						<div className="brain-left-tab">
-							<div className="list-group ">
+						<div className="brain-left-tab ">
+							<div className=" list-group ">
 								{brain_4.length != 0 ? (
 									<div>
-										{search.length != 0 ? (
-											<div class="rightbox brain-bg rounded mx-2">
-												<div class="rb-container">
-													<ul class="rb">
-														{search_brain.map(
+										{search4.length != 0 ? (
+											<div className="rightbox brain-bg rounded mx-2">
+												<div className="rb-container">
+													<ul className="rb">
+														{searchBrain4.map(
 															(item, index) => (
 																<BrainCard
 																	item={item}
@@ -459,9 +614,9 @@ function ProfileBrain(props) {
 												</div>
 											</div>
 										) : (
-											<div class="rightbox brain-bg rounded mx-2">
-												<div class="rb-container">
-													<ul class="rb">
+											<div className="rightbox brain-bg rounded mx-2">
+												<div className="rb-container">
+													<ul className="rb">
 														{brain_4.map(
 															(item, index) => (
 																<BrainCard
@@ -487,7 +642,7 @@ function ProfileBrain(props) {
 						</div>
 					</div>
 					<div
-						class="tab-pane fade"
+						className="tab-pane fade"
 						id="br5"
 						role="tabpanel"
 						aria-labelledby="br5-tab"
@@ -499,28 +654,31 @@ function ProfileBrain(props) {
 									className="shadow-sm rounded-right border-0 form-control"
 									placeholder="search.."
 									onChange={(event) =>
-										setSearch(event.target.value)
+										setSearch5(event.target.value)
 									}
 								/>
 								<span
 									className="shadow-sm rounded-left border-0 input-group-text bg-white"
 									id="basic-addon1"
 								>
-									<i className="fas fa-search"></i>
+									<i
+										className="fas fa-search"
+										onClick={onBrain5Search}
+									></i>
 								</span>
 							</div>
 						) : (
 							""
 						)}
-						<div className="brain-left-tab">
+						<div className="brain-left-tab ">
 							<div className=" list-group ">
 								{brain_5.length != 0 ? (
 									<div>
-										{search.length != 0 ? (
-											<div class="rightbox brain-bg rounded mx-2">
-												<div class="rb-container">
-													<ul class="rb">
-														{search_brain.map(
+										{search5.length != 0 ? (
+											<div className="rightbox brain-bg rounded mx-2">
+												<div className="rb-container">
+													<ul className="rb">
+														{searchBrain5.map(
 															(item, index) => (
 																<BrainCard
 																	item={item}
@@ -537,9 +695,9 @@ function ProfileBrain(props) {
 												</div>
 											</div>
 										) : (
-											<div class="rightbox brain-bg rounded mx-2">
-												<div class="rb-container">
-													<ul class="rb">
+											<div className="rightbox brain-bg rounded mx-2">
+												<div className="rb-container">
+													<ul className="rb">
 														{brain_5.map(
 															(item, index) => (
 																<BrainCard
@@ -565,7 +723,7 @@ function ProfileBrain(props) {
 						</div>
 					</div>
 					<div
-						class="tab-pane fade"
+						className="tab-pane fade"
 						id="br6"
 						role="tabpanel"
 						aria-labelledby="br6-tab"
@@ -577,28 +735,31 @@ function ProfileBrain(props) {
 									className="shadow-sm rounded-right border-0 form-control"
 									placeholder="search.."
 									onChange={(event) =>
-										setSearch(event.target.value)
+										setSearch6(event.target.value)
 									}
 								/>
 								<span
 									className="shadow-sm rounded-left border-0 input-group-text bg-white"
 									id="basic-addon1"
 								>
-									<i className="fas fa-search"></i>
+									<i
+										className="fas fa-search"
+										onClick={onBrain6Search}
+									></i>
 								</span>
 							</div>
 						) : (
 							""
 						)}
-						<div className="brain-left-tab">
+						<div className="brain-left-tab ">
 							<div className=" list-group ">
 								{brain_6.length != 0 ? (
 									<div>
-										{search.length != 0 ? (
-											<div class="rightbox brain-bg rounded mx-2">
-												<div class="rb-container">
-													<ul class="rb">
-														{search_brain.map(
+										{search6.length != 0 ? (
+											<div className="rightbox brain-bg rounded mx-2">
+												<div className="rb-container">
+													<ul className="rb">
+														{searchBrain6.map(
 															(item, index) => (
 																<BrainCard
 																	item={item}
@@ -615,9 +776,9 @@ function ProfileBrain(props) {
 												</div>
 											</div>
 										) : (
-											<div class="rightbox brain-bg rounded mx-2">
-												<div class="rb-container">
-													<ul class="rb">
+											<div className="rightbox brain-bg rounded mx-2">
+												<div className="rb-container">
+													<ul className="rb">
 														{brain_6.map(
 															(item, index) => (
 																<BrainCard
@@ -643,7 +804,7 @@ function ProfileBrain(props) {
 						</div>
 					</div>
 					<div
-						class="tab-pane fade"
+						className="tab-pane fade"
 						id="br7"
 						role="tabpanel"
 						aria-labelledby="br7-tab"
@@ -655,28 +816,31 @@ function ProfileBrain(props) {
 									className="shadow-sm rounded-right border-0 form-control"
 									placeholder="search.."
 									onChange={(event) =>
-										setSearch(event.target.value)
+										setSearch7(event.target.value)
 									}
 								/>
 								<span
 									className="shadow-sm rounded-left border-0 input-group-text bg-white"
 									id="basic-addon1"
 								>
-									<i className="fas fa-search"></i>
+									<i
+										className="fas fa-search"
+										onClick={onBrain7Search}
+									></i>
 								</span>
 							</div>
 						) : (
 							""
 						)}
-						<div className="brain-left-tab">
+						<div className="brain-left-tab ">
 							<div className=" list-group ">
 								{brain_7.length != 0 ? (
 									<div>
-										{search.length != 0 ? (
-											<div class="rightbox brain-bg rounded mx-2">
-												<div class="rb-container">
-													<ul class="rb">
-														{search_brain.map(
+										{search7.length != 0 ? (
+											<div className="rightbox brain-bg rounded mx-2">
+												<div className="rb-container">
+													<ul className="rb">
+														{searchBrain7.map(
 															(item, index) => (
 																<BrainCard
 																	item={item}
@@ -693,9 +857,9 @@ function ProfileBrain(props) {
 												</div>
 											</div>
 										) : (
-											<div class="rightbox brain-bg rounded mx-2">
-												<div class="rb-container">
-													<ul class="rb">
+											<div className="rightbox brain-bg rounded mx-2">
+												<div className="rb-container">
+													<ul className="rb">
 														{brain_7.map(
 															(item, index) => (
 																<BrainCard

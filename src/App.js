@@ -18,16 +18,22 @@ import MyRegisterRoute from "./Components/Contexts/MyRegisterRoute";
 
 function App() {
 	return (
-		<Router>
-			<Switch>
-				<Route exact path="/welcome/:id" component={FrontSide} />
-				<MyWelcomeRoute exact path="/my-room/:id" component={Room} />
-				<Route exact path="/" component={About} />
-				<Route exact path="/my-todo" component={Todo} />
-				<MyLoginRoute exact path="/sign-in" component={Login} />
-				<MyRegisterRoute exact path="/sign-up" component={Register} />
-			</Switch>
-		</Router>
+		<div>
+			<Router>
+				<Switch>
+					<Route exact path="/welcome/:id" component={FrontSide} />
+					<MyWelcomeRoute exact path="/room/:id" component={Room} />
+					<Route exact path="/" component={About} />
+					<Route exact path="/my-todo" component={Todo} />
+					<MyLoginRoute exact path="/sign-in" component={Login} />
+					<MyRegisterRoute
+						exact
+						path="/sign-up"
+						component={Register}
+					/>
+				</Switch>
+			</Router>
+		</div>
 	);
 }
 

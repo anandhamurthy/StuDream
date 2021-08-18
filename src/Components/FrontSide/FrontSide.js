@@ -2,8 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./FrontSide.css";
 
 import door from "../Img/front.png";
-import bio_metrics from "../Img/bio_metric.png";
-import scan from "../Img/finger_print.gif";
+import bio_metrics from "../Img/finger_print.gif";
 import { useParams } from "react-router-dom";
 import { db } from "../Firebase/firebase";
 import { getUser } from "../Firebase/auth";
@@ -15,16 +14,16 @@ function FrontSide() {
 
 	function openRoom() {
 		window.location =
-			"/my-room/" + JSON.parse(localStorage.getItem("user")).uid;
+			"/room/" + JSON.parse(localStorage.getItem("user")).uid;
 	}
 
 	function openFriendRoom() {
 		localStorage.setItem("friend_user_id", params.id);
-		window.location = "/my-room/" + params.id;
+		window.location = "/room/" + params.id;
 	}
 
 	useEffect(() => {
-		db.collection("User ID")
+		db.collection("User IDs")
 			.doc(params.id)
 			.get()
 			.then((doc) => {
@@ -42,19 +41,32 @@ function FrontSide() {
 	const onSubmit = async (event) => {
 		event.preventDefault();
 		var user = getUser();
-		console.log(user.uid);
 		const key = db
-			.collection("Todo")
+			.collection("User Items")
 			.doc(user.uid)
 			.collection("My Visitors")
 			.doc().id;
+
+		var currentdate = new Date();
+		var datetime =
+			currentdate.getDate() +
+			"/" +
+			(currentdate.getMonth() + 1) +
+			"/" +
+			currentdate.getFullYear() +
+			" @ " +
+			currentdate.getHours() +
+			":" +
+			currentdate.getMinutes() +
+			":" +
+			currentdate.getSeconds();
 		return db
-			.collection("Todo")
+			.collection("User Items")
 			.doc(user.uid)
 			.collection("My Visitors")
 			.doc(key)
 			.set({
-				visitor_date: new Date(),
+				visitor_date: datetime,
 				visitor_id: params.id,
 				visiting_id: key,
 			})
@@ -69,22 +81,21 @@ function FrontSide() {
 	return (
 		<div>
 			{verify ? (
-				<section id="education_room">
+				<section>
 					<img src={door} alt="" id="door" />
-					<img src={bio_metrics} alt="" id="bio_metrics" />
 					{params.id ===
 					JSON.parse(localStorage.getItem("user")).uid ? (
 						<img
-							src={scan}
+							src={bio_metrics}
 							alt=""
-							id="scanner"
+							id="bio_metrics"
 							onClick={openRoom}
 						/>
 					) : (
 						<img
-							src={scan}
+							src={bio_metrics}
 							alt=""
-							id="scanner"
+							id="bio_metrics"
 							onClick={onSubmit}
 						/>
 					)}

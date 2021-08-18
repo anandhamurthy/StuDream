@@ -1,12 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import { db } from "../Firebase/firebase";
 import { getUser } from "../Firebase/auth";
+
+import "./Cupboard.css";
 
 function AlbumCard(props) {
 	const deleteAlbum = (album_id) => {
 		const uid = getUser().uid;
 		return db
-			.collection("Todo")
+			.collection("User Items")
 			.doc(uid)
 			.collection("My Albums")
 			.doc(album_id)
@@ -20,11 +22,11 @@ function AlbumCard(props) {
 	};
 	return (
 		<div>
-			<div className="m-2">
+			<div className="album-card m-2">
 				<div className="shadow border-0 p-4">
 					<div className="d-flex justify-content-between align-items-center">
-						<div className="album-card d-flex justify-content-start align-items-center">
-							<i class=" mx-2 far fa-images album-icon"></i>
+						<div className=" d-flex justify-content-start align-items-center">
+							<i className=" mx-2 far fa-images album-icon"></i>
 
 							<div>
 								<p className="mx-3 my-0">
@@ -38,7 +40,7 @@ function AlbumCard(props) {
 
 						{props.friend_view ? (
 							<i
-								class="delete far fa-trash-alt"
+								className="delete far fa-trash-alt"
 								onClick={() => {
 									deleteAlbum(props.item.album_id);
 								}}

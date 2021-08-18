@@ -12,7 +12,7 @@ function TodoCard(props) {
 	const deleteTodo = (todo_id) => {
 		const uid = getUser().uid;
 		return db
-			.collection("Todo")
+			.collection("User Items")
 			.doc(uid)
 			.collection("My Todos")
 			.doc(todo_id)
@@ -29,7 +29,7 @@ function TodoCard(props) {
 		check_box.checked = true;
 		const uid = getUser().uid;
 		return db
-			.collection("Todo")
+			.collection("User Items")
 			.doc(uid)
 			.collection("My Todos")
 			.doc(todo_id)
@@ -48,7 +48,7 @@ function TodoCard(props) {
 		const check_box = document.querySelector(".check_box");
 		check_box.checked = true;
 		return db
-			.collection("Todo")
+			.collection("User Items")
 			.doc(uid)
 			.collection("My Todos")
 			.doc(todo_id)
@@ -66,8 +66,8 @@ function TodoCard(props) {
 	return (
 		<div>
 			<div className="shadow-sm todo-card">
-				<div class="mx-3 d-flex justify-content-between align-items-center">
-					<div class="d-flex justify-content-start align-items-center">
+				<div className="mx-3 d-flex justify-content-between align-items-center">
+					<div className="d-flex justify-content-start align-items-center">
 						{props.item.status === "Completed" ||
 						props.friend_view === false ? (
 							""
@@ -88,7 +88,7 @@ function TodoCard(props) {
 					<div className="d-flex justify-content-start align-items-center">
 						{props.friend_view ? (
 							<i
-								class="delete far fa-trash-alt"
+								className="delete far fa-trash-alt text-white"
 								onClick={() => {
 									deleteTodo(props.item.todo_id);
 								}}
@@ -133,7 +133,7 @@ function TodoCard(props) {
 						}
 					})()}
 
-					<p className="m-1 align-self-center">
+					<p className="m-1 align-self-center text-white">
 						{props.item.priority}
 					</p>
 				</div>

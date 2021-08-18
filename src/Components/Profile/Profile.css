@@ -1,26 +1,3 @@
-#education {
-    width: 100%;
-    height: 100%;
-    background-color: #ffffff;
-}
-
-#login {
-    position: absolute;
-    top: 10%;
-}
-
-.exam_layout {
-    position: relative;
-}
-
-.add_exam {
-    position: absolute;
-    bottom: 10%;
-    right: 10%;
-}
-
-.add_subject {
-    position: absolute;
-    bottom: 10%;
-    right: 20%;
+.visitor_finger_print {
+    width: 10%;
 }

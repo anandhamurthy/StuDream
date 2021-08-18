@@ -18,7 +18,7 @@ function ProfileTimeTable(props) {
 	useEffect(() => {
 		const uid = getUser().uid;
 		return db
-			.collection("Todo")
+			.collection("User Items")
 			.doc(props.user_id)
 			.collection("My TimeTable")
 			.onSnapshot((snapshot) => {

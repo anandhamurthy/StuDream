@@ -6,9 +6,8 @@ import { getUser } from "../Firebase/auth";
 import "./Brains.css";
 import BrainCard from "./BrainCard";
 import Empty from "../Empty/Empty";
-import Loading from "../Loading/Loading";
 
-function Brains() {
+function Brains(props) {
 	const [title, setTitle] = useState("");
 	const [date, setDate] = useState("");
 	const [message, setMessage] = useState("");
@@ -38,10 +37,30 @@ function Brains() {
 	const [searchBrain6, setSearchBrain6] = useState([]);
 	const [searchBrain7, setSearchBrain7] = useState([]);
 
+	const [myBrain, setMyBrain] = useState([]);
+
 	useEffect(() => {
 		const uid = getUser().uid;
 		return db
-			.collection("Todo")
+			.collection("Users")
+			.doc(uid)
+			.get()
+			.then((doc) => {
+				if (doc.exists) {
+					setMyBrain(doc.data().brain_names);
+				} else {
+					console.log("No such document!");
+				}
+			})
+			.catch((error) => {
+				console.log("Error getting document:", error);
+			});
+	}, []);
+
+	useEffect(() => {
+		const uid = getUser().uid;
+		return db
+			.collection("User Items")
 			.doc(uid)
 			.collection("My Brains")
 			.onSnapshot((snapshot) => {
@@ -93,7 +112,9 @@ function Brains() {
 			setSearchBrain1(brain_1);
 			return;
 		}
-		const result = brain_1.filter((item) => item.title.includes(search1));
+		const result = brain_1.filter((item) =>
+			item.title.toLowerCase().includes(search1.toLowerCase())
+		);
 		setSearchBrain1(result);
 	};
 
@@ -107,7 +128,9 @@ function Brains() {
 			setSearchBrain2(brain_2);
 			return;
 		}
-		const result = brain_2.filter((item) => item.title.includes(search2));
+		const result = brain_2.filter((item) =>
+			item.title.toLowerCase().includes(search2.toLowerCase())
+		);
 		setSearchBrain2(result);
 	};
 
@@ -121,7 +144,9 @@ function Brains() {
 			setSearchBrain3(brain_3);
 			return;
 		}
-		const result = brain_3.filter((item) => item.title.includes(search3));
+		const result = brain_3.filter((item) =>
+			item.title.toLowerCase().includes(search3.toLowerCase())
+		);
 		setSearchBrain3(result);
 	};
 
@@ -135,7 +160,9 @@ function Brains() {
 			setSearchBrain4(brain_4);
 			return;
 		}
-		const result = brain_4.filter((item) => item.title.includes(search4));
+		const result = brain_4.filter((item) =>
+			item.title.toLowerCase().includes(search4.toLowerCase())
+		);
 		setSearchBrain4(result);
 	};
 
@@ -149,7 +176,9 @@ function Brains() {
 			setSearchBrain5(brain_5);
 			return;
 		}
-		const result = brain_5.filter((item) => item.title.includes(search5));
+		const result = brain_5.filter((item) =>
+			item.title.toLowerCase().includes(search5.toLowerCase())
+		);
 		setSearchBrain5(result);
 	};
 
@@ -163,7 +192,9 @@ function Brains() {
 			setSearchBrain6(brain_6);
 			return;
 		}
-		const result = brain_6.filter((item) => item.title.includes(search6));
+		const result = brain_6.filter((item) =>
+			item.title.toLowerCase().includes(search6.toLowerCase())
+		);
 		setSearchBrain6(result);
 	};
 
@@ -177,7 +208,9 @@ function Brains() {
 			setSearchBrain7(brain_7);
 			return;
 		}
-		const result = brain_7.filter((item) => item.title.includes(search7));
+		const result = brain_7.filter((item) =>
+			item.title.toLowerCase().includes(search7.toLowerCase())
+		);
 		setSearchBrain7(result);
 	};
 
@@ -211,12 +244,12 @@ function Brains() {
 		var user = getUser();
 		console.log(user.uid);
 		const key = db
-			.collection("Todo")
+			.collection("User Items")
 			.doc(user.uid)
 			.collection("My Brains")
 			.doc().id;
 		return db
-			.collection("Todo")
+			.collection("User Items")
 			.doc(user.uid)
 			.collection("My Brains")
 			.doc(key)
@@ -245,7 +278,7 @@ function Brains() {
 	return (
 		<div className="p-5 container-fluid">
 			<div className="d-flex justify-content-start align-items-center">
-				<i class="fas fa-brain"></i>
+				<i className="fas fa-brain"></i>
 				<h3 className="m-2 text-dark">My Brains</h3>
 			</div>
 
@@ -253,10 +286,14 @@ function Brains() {
 				<div className="p-2 col-lg-6 order-lg-1 mt-5 mt-lg-0">
 					<div className=" shadow border-0 card p-4">
 						<div>
-							<ul class="nav nav-tabs" id="myTab" role="tablist">
-								<li class="nav-item" role="presentation">
+							<ul
+								className="nav nav-tabs"
+								id="myTab"
+								role="tablist"
+							>
+								<li className="nav-item" role="presentation">
 									<button
-										class="nav-link active"
+										className="nav-link active"
 										id="br1-tab"
 										data-bs-toggle="tab"
 										data-bs-target="#br1"
@@ -265,12 +302,12 @@ function Brains() {
 										aria-controls="br1"
 										aria-selected="true"
 									>
-										Brain 1
+										{myBrain[0]}
 									</button>
 								</li>
-								<li class="nav-item" role="presentation">
+								<li className="nav-item" role="presentation">
 									<button
-										class="nav-link"
+										className="nav-link"
 										id="br2-tab"
 										data-bs-toggle="tab"
 										data-bs-target="#br2"
@@ -279,12 +316,12 @@ function Brains() {
 										aria-controls="br2"
 										aria-selected="false"
 									>
-										Brain 2
+										{myBrain[1]}
 									</button>
 								</li>
-								<li class="nav-item" role="presentation">
+								<li className="nav-item" role="presentation">
 									<button
-										class="nav-link"
+										className="nav-link"
 										id="br3-tab"
 										data-bs-toggle="tab"
 										data-bs-target="#br3"
@@ -293,12 +330,12 @@ function Brains() {
 										aria-controls="br3"
 										aria-selected="false"
 									>
-										Brain 3
+										{myBrain[2]}
 									</button>
 								</li>
-								<li class="nav-item" role="presentation">
+								<li className="nav-item" role="presentation">
 									<button
-										class="nav-link"
+										className="nav-link"
 										id="br4-tab"
 										data-bs-toggle="tab"
 										data-bs-target="#br4"
@@ -307,12 +344,12 @@ function Brains() {
 										aria-controls="br4"
 										aria-selected="false"
 									>
-										Brain 4
+										{myBrain[3]}
 									</button>
 								</li>
-								<li class="nav-item" role="presentation">
+								<li className="nav-item" role="presentation">
 									<button
-										class="nav-link"
+										className="nav-link"
 										id="br5-tab"
 										data-bs-toggle="tab"
 										data-bs-target="#br5"
@@ -321,12 +358,12 @@ function Brains() {
 										aria-controls="br5"
 										aria-selected="false"
 									>
-										Brain 5
+										{myBrain[4]}
 									</button>
 								</li>
-								<li class="nav-item" role="presentation">
+								<li className="nav-item" role="presentation">
 									<button
-										class="nav-link"
+										className="nav-link"
 										id="br6-tab"
 										data-bs-toggle="tab"
 										data-bs-target="#br6"
@@ -335,12 +372,12 @@ function Brains() {
 										aria-controls="br6"
 										aria-selected="false"
 									>
-										Brain 6
+										{myBrain[5]}
 									</button>
 								</li>
-								<li class="nav-item" role="presentation">
+								<li className="nav-item" role="presentation">
 									<button
-										class="nav-link"
+										className="nav-link"
 										id="br7-tab"
 										data-bs-toggle="tab"
 										data-bs-target="#br7"
@@ -349,16 +386,16 @@ function Brains() {
 										aria-controls="br7"
 										aria-selected="false"
 									>
-										Brain 7
+										{myBrain[6]}
 									</button>
 								</li>
 							</ul>
 						</div>
 
 						<div>
-							<div class="tab-content" id="myTabContent">
+							<div className="tab-content" id="myTabContent">
 								<div
-									class="tab-pane fade show active"
+									className="tab-pane fade show active"
 									id="br1"
 									role="tabpanel"
 									aria-labelledby="br1-tab"
@@ -393,9 +430,9 @@ function Brains() {
 											{brain_1.length != 0 ? (
 												<div>
 													{search1.length != 0 ? (
-														<div class="rightbox brain-bg rounded mx-2">
-															<div class="rb-container">
-																<ul class="rb">
+														<div className="rightbox brain-bg rounded mx-2">
+															<div className="rb-container">
+																<ul className="rb">
 																	{searchBrain1.map(
 																		(
 																			item,
@@ -405,6 +442,12 @@ function Brains() {
 																				item={
 																					item
 																				}
+																				user_id={
+																					props.user_id
+																				}
+																				friend_view={
+																					props.friend_view
+																				}
 																			></BrainCard>
 																		)
 																	)}
@@ -412,9 +455,9 @@ function Brains() {
 															</div>
 														</div>
 													) : (
-														<div class="rightbox brain-bg rounded mx-2">
-															<div class="rb-container">
-																<ul class="rb">
+														<div className="rightbox brain-bg rounded mx-2">
+															<div className="rb-container">
+																<ul className="rb">
 																	{brain_1.map(
 																		(
 																			item,
@@ -423,6 +466,12 @@ function Brains() {
 																			<BrainCard
 																				item={
 																					item
+																				}
+																				user_id={
+																					props.user_id
+																				}
+																				friend_view={
+																					props.friend_view
 																				}
 																			></BrainCard>
 																		)
@@ -441,7 +490,7 @@ function Brains() {
 									</div>
 								</div>
 								<div
-									class="tab-pane fade"
+									className="tab-pane fade"
 									id="br2"
 									role="tabpanel"
 									aria-labelledby="br2-tab"
@@ -476,9 +525,9 @@ function Brains() {
 											{brain_2.length != 0 ? (
 												<div>
 													{search2.length != 0 ? (
-														<div class="rightbox brain-bg rounded mx-2">
-															<div class="rb-container">
-																<ul class="rb">
+														<div className="rightbox brain-bg rounded mx-2">
+															<div className="rb-container">
+																<ul className="rb">
 																	{searchBrain2.map(
 																		(
 																			item,
@@ -488,6 +537,12 @@ function Brains() {
 																				item={
 																					item
 																				}
+																				user_id={
+																					props.user_id
+																				}
+																				friend_view={
+																					props.friend_view
+																				}
 																			></BrainCard>
 																		)
 																	)}
@@ -495,9 +550,9 @@ function Brains() {
 															</div>
 														</div>
 													) : (
-														<div class="rightbox brain-bg rounded mx-2">
-															<div class="rb-container">
-																<ul class="rb">
+														<div className="rightbox brain-bg rounded mx-2">
+															<div className="rb-container">
+																<ul className="rb">
 																	{brain_2.map(
 																		(
 																			item,
@@ -506,6 +561,12 @@ function Brains() {
 																			<BrainCard
 																				item={
 																					item
+																				}
+																				user_id={
+																					props.user_id
+																				}
+																				friend_view={
+																					props.friend_view
 																				}
 																			></BrainCard>
 																		)
@@ -522,7 +583,7 @@ function Brains() {
 									</div>
 								</div>
 								<div
-									class="tab-pane fade"
+									className="tab-pane fade"
 									id="br3"
 									role="tabpanel"
 									aria-labelledby="br3-tab"
@@ -557,9 +618,9 @@ function Brains() {
 											{brain_3.length != 0 ? (
 												<div>
 													{search3.length != 0 ? (
-														<div class="rightbox brain-bg rounded mx-2">
-															<div class="rb-container">
-																<ul class="rb">
+														<div className="rightbox brain-bg rounded mx-2">
+															<div className="rb-container">
+																<ul className="rb">
 																	{searchBrain3.map(
 																		(
 																			item,
@@ -569,6 +630,12 @@ function Brains() {
 																				item={
 																					item
 																				}
+																				user_id={
+																					props.user_id
+																				}
+																				friend_view={
+																					props.friend_view
+																				}
 																			></BrainCard>
 																		)
 																	)}
@@ -576,9 +643,9 @@ function Brains() {
 															</div>
 														</div>
 													) : (
-														<div class="rightbox brain-bg rounded mx-2">
-															<div class="rb-container">
-																<ul class="rb">
+														<div className="rightbox brain-bg rounded mx-2">
+															<div className="rb-container">
+																<ul className="rb">
 																	{brain_3.map(
 																		(
 																			item,
@@ -587,6 +654,12 @@ function Brains() {
 																			<BrainCard
 																				item={
 																					item
+																				}
+																				user_id={
+																					props.user_id
+																				}
+																				friend_view={
+																					props.friend_view
 																				}
 																			></BrainCard>
 																		)
@@ -603,7 +676,7 @@ function Brains() {
 									</div>
 								</div>
 								<div
-									class="tab-pane fade"
+									className="tab-pane fade"
 									id="br4"
 									role="tabpanel"
 									aria-labelledby="br4-tab"
@@ -638,9 +711,9 @@ function Brains() {
 											{brain_4.length != 0 ? (
 												<div>
 													{search4.length != 0 ? (
-														<div class="rightbox brain-bg rounded mx-2">
-															<div class="rb-container">
-																<ul class="rb">
+														<div className="rightbox brain-bg rounded mx-2">
+															<div className="rb-container">
+																<ul className="rb">
 																	{searchBrain4.map(
 																		(
 																			item,
@@ -650,6 +723,12 @@ function Brains() {
 																				item={
 																					item
 																				}
+																				user_id={
+																					props.user_id
+																				}
+																				friend_view={
+																					props.friend_view
+																				}
 																			></BrainCard>
 																		)
 																	)}
@@ -657,9 +736,9 @@ function Brains() {
 															</div>
 														</div>
 													) : (
-														<div class="rightbox brain-bg rounded mx-2">
-															<div class="rb-container">
-																<ul class="rb">
+														<div className="rightbox brain-bg rounded mx-2">
+															<div className="rb-container">
+																<ul className="rb">
 																	{brain_4.map(
 																		(
 																			item,
@@ -684,7 +763,7 @@ function Brains() {
 									</div>
 								</div>
 								<div
-									class="tab-pane fade"
+									className="tab-pane fade"
 									id="br5"
 									role="tabpanel"
 									aria-labelledby="br5-tab"
@@ -719,9 +798,9 @@ function Brains() {
 											{brain_5.length != 0 ? (
 												<div>
 													{search5.length != 0 ? (
-														<div class="rightbox brain-bg rounded mx-2">
-															<div class="rb-container">
-																<ul class="rb">
+														<div className="rightbox brain-bg rounded mx-2">
+															<div className="rb-container">
+																<ul className="rb">
 																	{searchBrain5.map(
 																		(
 																			item,
@@ -731,6 +810,12 @@ function Brains() {
 																				item={
 																					item
 																				}
+																				user_id={
+																					props.user_id
+																				}
+																				friend_view={
+																					props.friend_view
+																				}
 																			></BrainCard>
 																		)
 																	)}
@@ -738,9 +823,9 @@ function Brains() {
 															</div>
 														</div>
 													) : (
-														<div class="rightbox brain-bg rounded mx-2">
-															<div class="rb-container">
-																<ul class="rb">
+														<div className="rightbox brain-bg rounded mx-2">
+															<div className="rb-container">
+																<ul className="rb">
 																	{brain_5.map(
 																		(
 																			item,
@@ -749,6 +834,12 @@ function Brains() {
 																			<BrainCard
 																				item={
 																					item
+																				}
+																				user_id={
+																					props.user_id
+																				}
+																				friend_view={
+																					props.friend_view
 																				}
 																			></BrainCard>
 																		)
@@ -765,7 +856,7 @@ function Brains() {
 									</div>
 								</div>
 								<div
-									class="tab-pane fade"
+									className="tab-pane fade"
 									id="br6"
 									role="tabpanel"
 									aria-labelledby="br6-tab"
@@ -800,9 +891,9 @@ function Brains() {
 											{brain_6.length != 0 ? (
 												<div>
 													{search6.length != 0 ? (
-														<div class="rightbox brain-bg rounded mx-2">
-															<div class="rb-container">
-																<ul class="rb">
+														<div className="rightbox brain-bg rounded mx-2">
+															<div className="rb-container">
+																<ul className="rb">
 																	{searchBrain6.map(
 																		(
 																			item,
@@ -812,6 +903,12 @@ function Brains() {
 																				item={
 																					item
 																				}
+																				user_id={
+																					props.user_id
+																				}
+																				friend_view={
+																					props.friend_view
+																				}
 																			></BrainCard>
 																		)
 																	)}
@@ -819,9 +916,9 @@ function Brains() {
 															</div>
 														</div>
 													) : (
-														<div class="rightbox brain-bg rounded mx-2">
-															<div class="rb-container">
-																<ul class="rb">
+														<div className="rightbox brain-bg rounded mx-2">
+															<div className="rb-container">
+																<ul className="rb">
 																	{brain_6.map(
 																		(
 																			item,
@@ -830,6 +927,12 @@ function Brains() {
 																			<BrainCard
 																				item={
 																					item
+																				}
+																				user_id={
+																					props.user_id
+																				}
+																				friend_view={
+																					props.friend_view
 																				}
 																			></BrainCard>
 																		)
@@ -846,7 +949,7 @@ function Brains() {
 									</div>
 								</div>
 								<div
-									class="tab-pane fade"
+									className="tab-pane fade"
 									id="br7"
 									role="tabpanel"
 									aria-labelledby="br7-tab"
@@ -881,9 +984,9 @@ function Brains() {
 											{brain_7.length != 0 ? (
 												<div>
 													{search7.length != 0 ? (
-														<div class="rightbox brain-bg rounded mx-2">
-															<div class="rb-container">
-																<ul class="rb">
+														<div className="rightbox brain-bg rounded mx-2">
+															<div className="rb-container">
+																<ul className="rb">
 																	{searchBrain7.map(
 																		(
 																			item,
@@ -893,6 +996,12 @@ function Brains() {
 																				item={
 																					item
 																				}
+																				user_id={
+																					props.user_id
+																				}
+																				friend_view={
+																					props.friend_view
+																				}
 																			></BrainCard>
 																		)
 																	)}
@@ -900,9 +1009,9 @@ function Brains() {
 															</div>
 														</div>
 													) : (
-														<div class="rightbox brain-bg rounded mx-2">
-															<div class="rb-container">
-																<ul class="rb">
+														<div className="rightbox brain-bg rounded mx-2">
+															<div className="rb-container">
+																<ul className="rb">
 																	{brain_7.map(
 																		(
 																			item,
@@ -911,6 +1020,12 @@ function Brains() {
 																			<BrainCard
 																				item={
 																					item
+																				}
+																				user_id={
+																					props.user_id
+																				}
+																				friend_view={
+																					props.friend_view
 																				}
 																			></BrainCard>
 																		)
@@ -954,13 +1069,11 @@ function Brains() {
 									}
 								>
 									<option selected>Choose Brain ID</option>
-									<option value="Brain 1">Brain 1</option>
-									<option value="Brain 2">Brain 2</option>
-									<option value="Brain 3">Brain 3</option>
-									<option value="Brain 4">Brain 4</option>
-									<option value="Brain 5">Brain 5</option>
-									<option value="Brain 6">Brain 6</option>
-									<option value="Brain 7">Brain 7</option>
+									{myBrain.map((item, index) => (
+										<option value={"Brain " + (index + 1)}>
+											{item}
+										</option>
+									))}
 								</select>
 							</div>
 							<div className="input-group mb-3">
@@ -968,12 +1081,11 @@ function Brains() {
 									className="shadow rounded-left border-0 input-group-text bg-white"
 									id="basic-addon1"
 								>
-									<i class="far fa-calendar-alt"></i>
+									<i className="far fa-calendar-alt"></i>
 								</span>
 								<input
-									type="datetime-local"
+									type="date"
 									className="shadow rounded-right border-0 form-control"
-									data-date-format="DD MMMM YYYY"
 									required
 									value={date}
 									onChange={(event) =>
@@ -986,7 +1098,7 @@ function Brains() {
 									className="shadow rounded-left border-0 input-group-text bg-white"
 									id="basic-addon1"
 								>
-									<i class="fas fa-thumbtack"></i>
+									<i className="fas fa-thumbtack"></i>
 								</span>
 								<input
 									type="text"
@@ -1004,7 +1116,7 @@ function Brains() {
 									className="shadow rounded-left border-0 input-group-text bg-white"
 									id="basic-addon1"
 								>
-									<i class="far fa-sticky-note"></i>
+									<i className="far fa-sticky-note"></i>
 								</span>
 								<textarea
 									type="text"

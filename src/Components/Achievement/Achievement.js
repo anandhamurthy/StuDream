@@ -23,10 +23,18 @@ function Achievement(props) {
 	const [achievements, setAchievements] = useState([]);
 	const [searchAchievement, setSearchAchievement] = useState([]);
 
+	const [achievementImages, setAchievementImages] = useState([]);
+	const [showImages, setShowImages] = useState(false);
+
+	function changeMyTab(ach_images, show_val) {
+		setShowImages(show_val);
+		setAchievementImages(ach_images);
+	}
+
 	useEffect(() => {
 		const uid = getUser().uid;
 		return db
-			.collection("Todo")
+			.collection("User Items")
 			.doc(props.user_id)
 			.collection("My Achievements")
 			.onSnapshot((snapshot) => {
@@ -44,12 +52,12 @@ function Achievement(props) {
 		setSearchAchievement(achievements);
 
 		if (search === "") {
-			setError("Enter Something.");
+			alert("Enter Something.");
 			setSearchAchievement(achievements);
 			return;
 		}
 		const result = achievements.filter((item) =>
-			item.event_name.includes(search)
+			item.event_name.toLowerCase().includes(search.toLowerCase())
 		);
 		setSearchAchievement(result);
 	};
@@ -60,13 +68,14 @@ function Achievement(props) {
 			newImage["id"] = Math.random();
 			setImages((prevState) => [...prevState, newImage]);
 		}
+		setUploadImages(true);
 	};
 
 	const handleUpload = () => {
 		const promises = [];
 		setProgressBar(true);
 		images.map((image) => {
-			const uploadTask = storage.ref(`images/${image.name}`).put(image);
+			const uploadTask = storage.ref(`Images/${image.name}`).put(image);
 			promises.push(uploadTask);
 			uploadTask.on(
 				"state_changed",
@@ -81,7 +90,7 @@ function Achievement(props) {
 				},
 				async () => {
 					await storage
-						.ref("images")
+						.ref("Images")
 						.child(image.name)
 						.getDownloadURL()
 						.then((urls) => {
@@ -125,12 +134,12 @@ function Achievement(props) {
 		var user = getUser();
 		console.log(user.uid);
 		const key = db
-			.collection("Todo")
+			.collection("User Items")
 			.doc(user.uid)
 			.collection("My Achievements")
 			.doc().id;
 		return db
-			.collection("Todo")
+			.collection("User Items")
 			.doc(user.uid)
 			.collection("My Achievements")
 			.doc(key)
@@ -147,6 +156,7 @@ function Achievement(props) {
 				seteventDate("");
 				seteventName("");
 				seteventPlace("");
+				setError(null);
 				submitButton.disabled = false;
 			})
 			.catch((error) => {
@@ -155,10 +165,10 @@ function Achievement(props) {
 			});
 	};
 
-	return props.friend_View ? (
+	return props.friend_view ? (
 		<div className="p-5 container-fluid">
 			<div className="d-flex justify-content-start align-items-center">
-				<i class="fas fa-trophy"></i>
+				<i className="fas fa-trophy"></i>
 				<h3 className="m-2 text-dark">My Achievements</h3>
 			</div>
 			<div className="row align-items-center">
@@ -179,7 +189,7 @@ function Achievement(props) {
 									id="basic-addon1"
 								>
 									<i
-										class="fas fa-search"
+										className="fas fa-search"
 										onClick={onSearch}
 									></i>
 								</span>
@@ -193,16 +203,33 @@ function Achievement(props) {
 										{search.length != 0
 											? searchAchievement.map(
 													(item, index) => (
-														<AchievementCard
-															item={item}
-														></AchievementCard>
+														<div
+															onClick={() => {
+																changeMyTab(
+																	item.event_images
+																);
+															}}
+														>
+															<AchievementCard
+																item={item}
+															></AchievementCard>
+														</div>
 													)
 											  )
 											: achievements.map(
 													(item, index) => (
-														<AchievementCard
-															item={item}
-														></AchievementCard>
+														<div
+															onClick={() => {
+																changeMyTab(
+																	item.event_images,
+																	true
+																);
+															}}
+														>
+															<AchievementCard
+																item={item}
+															></AchievementCard>
+														</div>
 													)
 											  )}
 									</div>
@@ -234,12 +261,13 @@ function Achievement(props) {
 										className="shadow rounded-left border-0 input-group-text bg-white"
 										id="basic-addon1"
 									>
-										<i class="fas fa-trophy"></i>
+										<i className="fas fa-trophy"></i>
 									</span>
 									<input
 										type="text"
 										className="shadow rounded-right border-0 form-control"
 										placeholder="Event Name"
+										value={eventName}
 										onChange={(event) =>
 											seteventName(event.target.value)
 										}
@@ -250,12 +278,13 @@ function Achievement(props) {
 										className="shadow rounded-left border-0 input-group-text bg-white"
 										id="basic-addon1"
 									>
-										<i class="far fa-calendar"></i>
+										<i className="far fa-calendar"></i>
 									</span>
 									<input
-										type="datetime-local"
+										type="date"
 										className="shadow rounded-right border-0 form-control"
 										placeholder="Event Date"
+										value={eventDate}
 										onChange={(event) =>
 											seteventDate(event.target.value)
 										}
@@ -267,12 +296,13 @@ function Achievement(props) {
 										className="shadow rounded-left border-0 input-group-text bg-white"
 										id="basic-addon1"
 									>
-										<i class="fas fa-map-marker-alt"></i>
+										<i className="fas fa-map-marker-alt"></i>
 									</span>
 									<input
 										type="text"
 										className="shadow rounded-right border-0 form-control"
 										placeholder="Event Place"
+										value={eventPlace}
 										onChange={(event) =>
 											seteventPlace(event.target.value)
 										}
@@ -325,12 +355,50 @@ function Achievement(props) {
 					</div>
 				</div>
 			</div>
+			{showImages && achievementImages.length != 0 ? (
+				<div>
+					<div className="d-flex justify-content-start align-items-center">
+						<i
+							onClick={() => {
+								changeMyTab([], false);
+							}}
+							className="back fas fa-arrow-left"
+						></i>
+						<h3 className="m-2 text-dark">Achievement Photos</h3>
+					</div>
+					<div className="shadow card p-4 border-0">
+						<div className="lefttab">
+							<div className=" list-group">
+								<div className="d-flex justify-content-between flex-wrap">
+									{achievementImages.length ? (
+										achievementImages.map(
+											(img_item, index) => (
+												<img
+													className="achievement-img img-fluid rounded shadow-sm"
+													src={img_item}
+													alt=""
+												></img>
+											)
+										)
+									) : (
+										<div className="m-auto p-5 d-flex align-items-center justify-content-center">
+											<Empty></Empty>
+										</div>
+									)}
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			) : (
+				""
+			)}
 		</div>
 	) : (
 		<div className="p-5 container-fluid">
 			<div className="d-flex justify-content-start align-items-center">
-				<i class="fas fa-trophy"></i>
-				<h3 className="m-2 text-dark">My Achievements</h3>
+				<i className="fas fa-trophy"></i>
+				<h3 className="m-2 text-dark">Achievements</h3>
 			</div>
 			<div className="row align-items-center">
 				<div className="p-2 col-lg-12 order-lg-1 mt-5 mt-lg-0">
@@ -350,7 +418,7 @@ function Achievement(props) {
 									id="basic-addon1"
 								>
 									<i
-										class="fas fa-search"
+										className="fas fa-search"
 										onClick={onSearch}
 									></i>
 								</span>
@@ -364,28 +432,46 @@ function Achievement(props) {
 										{search.length != 0
 											? searchAchievement.map(
 													(item, index) => (
-														<AchievementCard
-															item={item}
-															user_id={
-																props.user_id
-															}
-															friend_view={
-																props.friend_view
-															}
-														></AchievementCard>
+														<div
+															onClick={() => {
+																changeMyTab(
+																	item.event_images,
+																	true
+																);
+															}}
+														>
+															<AchievementCard
+																item={item}
+																user_id={
+																	props.user_id
+																}
+																friend_view={
+																	props.friend_view
+																}
+															></AchievementCard>
+														</div>
 													)
 											  )
 											: achievements.map(
 													(item, index) => (
-														<AchievementCard
-															item={item}
-															user_id={
-																props.user_id
-															}
-															friend_view={
-																props.friend_view
-															}
-														></AchievementCard>
+														<div
+															onClick={() => {
+																changeMyTab(
+																	item.event_images,
+																	true
+																);
+															}}
+														>
+															<AchievementCard
+																item={item}
+																user_id={
+																	props.user_id
+																}
+																friend_view={
+																	props.friend_view
+																}
+															></AchievementCard>
+														</div>
 													)
 											  )}
 									</div>
@@ -399,6 +485,45 @@ function Achievement(props) {
 					</div>
 				</div>
 			</div>
+
+			{showImages && achievementImages.length != 0 ? (
+				<div>
+					<div className="d-flex justify-content-start align-items-center">
+						<i
+							onClick={() => {
+								changeMyTab([], false);
+							}}
+							className="back fas fa-arrow-left"
+						></i>
+						<h3 className="m-2 text-dark">Achievement Photos</h3>
+					</div>
+					<div className="shadow card p-4 border-0">
+						<div className="lefttab">
+							<div className=" list-group">
+								<div className="d-flex justify-content-between flex-wrap">
+									{achievementImages.length ? (
+										achievementImages.map(
+											(img_item, index) => (
+												<img
+													className="achievement-img img-fluid rounded shadow-sm"
+													src={img_item}
+													alt=""
+												></img>
+											)
+										)
+									) : (
+										<div className="m-auto p-5 d-flex align-items-center justify-content-center">
+											<Empty></Empty>
+										</div>
+									)}
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			) : (
+				""
+			)}
 		</div>
 	);
 }

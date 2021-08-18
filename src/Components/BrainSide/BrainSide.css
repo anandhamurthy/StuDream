@@ -70,8 +70,14 @@ section #brain_7 {
     cursor: pointer;
 }
 
-#brains {
+/* #brains {
     width: 100%;
     background-color: white;
     height: 100vh;
 }
+
+#single-brains {
+    width: 100%;
+    background-color: white;
+    height: 100vh;
+} */

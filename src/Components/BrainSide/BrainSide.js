@@ -7,15 +7,16 @@ import main_brain from "../Img/brain.png";
 import { db } from "../Firebase/firebase";
 import { getUser } from "../Firebase/auth";
 
-import brain_1 from "../Img/pin.png";
-import brain_2 from "../Img/pin.png";
-import brain_3 from "../Img/pin.png";
-import brain_4 from "../Img/pin.png";
-import brain_5 from "../Img/pin.png";
-import brain_6 from "../Img/pin.png";
-import brain_7 from "../Img/pin.png";
+import brain_1 from "../Img/brain_x.png";
+import brain_2 from "../Img/brain_y.png";
+import brain_3 from "../Img/brain_z.png";
+import brain_4 from "../Img/brain_x.png";
+import brain_5 from "../Img/brain_y.png";
+import brain_6 from "../Img/brain_z.png";
+import brain_7 from "../Img/brain_x.png";
 import Brains from "../Brains/Brains";
 
+import close_white from "../Img/close_white.png";
 import close from "../Img/close.png";
 import SingleBrainView from "../Brains/SingleBrainView";
 
@@ -47,7 +48,7 @@ function BrainSide(props) {
 	useEffect(() => {
 		const uid = getUser().uid;
 		return db
-			.collection("Todo")
+			.collection("User Items")
 			.doc(props.user_id)
 			.collection("My Brains")
 			.onSnapshot((snapshot) => {
@@ -91,7 +92,7 @@ function BrainSide(props) {
 
 	return (
 		<body>
-			<section id="brain_room">
+			<section>
 				<img src={room_4} alt="" id="room_4" />
 
 				{props.friend_view ? (
@@ -221,7 +222,10 @@ function BrainSide(props) {
 			{brain ? (
 				<div id="modal">
 					<img src={close} alt="" id="close" onClick={openBrains} />
-					<Brains id="brains"></Brains>
+					<Brains
+						user_id={props.user_id}
+						friend_view={props.friend_view}
+					></Brains>
 				</div>
 			) : (
 				<div></div>
@@ -230,7 +234,7 @@ function BrainSide(props) {
 			{singleBrain ? (
 				<div id="modal">
 					<img
-						src={close}
+						src={close_white}
 						alt=""
 						id="close"
 						onClick={() => {
@@ -243,7 +247,6 @@ function BrainSide(props) {
 							return (
 								<SingleBrainView
 									items={b_1}
-									id="single-brains"
 									friend_view={props.friend_view}
 								></SingleBrainView>
 							);
@@ -251,7 +254,6 @@ function BrainSide(props) {
 							return (
 								<SingleBrainView
 									items={b_2}
-									id="single-brains"
 									friend_view={props.friend_view}
 								></SingleBrainView>
 							);
@@ -259,7 +261,6 @@ function BrainSide(props) {
 							return (
 								<SingleBrainView
 									items={b_3}
-									id="single-brains"
 									friend_view={props.friend_view}
 								></SingleBrainView>
 							);
@@ -267,7 +268,6 @@ function BrainSide(props) {
 							return (
 								<SingleBrainView
 									items={b_4}
-									id="single-brains"
 									friend_view={props.friend_view}
 								></SingleBrainView>
 							);
@@ -275,7 +275,6 @@ function BrainSide(props) {
 							return (
 								<SingleBrainView
 									items={b_5}
-									id="single-brains"
 									friend_view={props.friend_view}
 								></SingleBrainView>
 							);
@@ -283,7 +282,6 @@ function BrainSide(props) {
 							return (
 								<SingleBrainView
 									items={b_6}
-									id="single-brains"
 									friend_view={props.friend_view}
 								></SingleBrainView>
 							);
@@ -291,7 +289,6 @@ function BrainSide(props) {
 							return (
 								<SingleBrainView
 									items={b_7}
-									id="single-brains"
 									friend_view={props.friend_view}
 								></SingleBrainView>
 							);

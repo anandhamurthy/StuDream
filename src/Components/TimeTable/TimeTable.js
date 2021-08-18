@@ -5,7 +5,6 @@ import { getUser } from "../Firebase/auth";
 
 import Empty from "../Empty/Empty";
 import PeriodCard from "./PeriodCard";
-import Loading from "../Loading/Loading";
 
 function TimeTable(props) {
 	const [subjectName, setSubjectName] = useState("");
@@ -27,7 +26,7 @@ function TimeTable(props) {
 	useEffect(() => {
 		const uid = getUser().uid;
 		return db
-			.collection("Todo")
+			.collection("User Items")
 			.doc(props.user_id)
 			.collection("My TimeTable")
 			.onSnapshot((snapshot) => {
@@ -104,12 +103,12 @@ function TimeTable(props) {
 		var user = getUser();
 		console.log(user.uid);
 		const key = db
-			.collection("Todo")
+			.collection("User Items")
 			.doc(user.uid)
 			.collection("My TimeTable")
 			.doc().id;
 		return db
-			.collection("Todo")
+			.collection("User Items")
 			.doc(user.uid)
 			.collection("My TimeTable")
 			.doc(key)
@@ -266,6 +265,12 @@ function TimeTable(props) {
 														(item, index) => (
 															<PeriodCard
 																item={item}
+																user_id={
+																	props.user_id
+																}
+																friend_view={
+																	props.friend_view
+																}
 															></PeriodCard>
 														)
 													)}
@@ -292,6 +297,12 @@ function TimeTable(props) {
 														(item, index) => (
 															<PeriodCard
 																item={item}
+																user_id={
+																	props.user_id
+																}
+																friend_view={
+																	props.friend_view
+																}
 															></PeriodCard>
 														)
 													)}
@@ -316,6 +327,12 @@ function TimeTable(props) {
 														(item, index) => (
 															<PeriodCard
 																item={item}
+																user_id={
+																	props.user_id
+																}
+																friend_view={
+																	props.friend_view
+																}
 															></PeriodCard>
 														)
 													)}
@@ -340,6 +357,12 @@ function TimeTable(props) {
 														(item, index) => (
 															<PeriodCard
 																item={item}
+																user_id={
+																	props.user_id
+																}
+																friend_view={
+																	props.friend_view
+																}
 															></PeriodCard>
 														)
 													)}
@@ -364,6 +387,12 @@ function TimeTable(props) {
 														(item, index) => (
 															<PeriodCard
 																item={item}
+																user_id={
+																	props.user_id
+																}
+																friend_view={
+																	props.friend_view
+																}
 															></PeriodCard>
 														)
 													)}
@@ -388,6 +417,12 @@ function TimeTable(props) {
 														(item, index) => (
 															<PeriodCard
 																item={item}
+																user_id={
+																	props.user_id
+																}
+																friend_view={
+																	props.friend_view
+																}
 															></PeriodCard>
 														)
 													)}
@@ -411,6 +446,12 @@ function TimeTable(props) {
 													{day_7.map(
 														(item, index) => (
 															<PeriodCard
+																user_id={
+																	props.user_id
+																}
+																friend_view={
+																	props.friend_view
+																}
 																item={item}
 															></PeriodCard>
 														)
@@ -554,7 +595,7 @@ function TimeTable(props) {
 		<div className="p-5 container-fluid">
 			<div className="d-flex justify-content-start align-items-center">
 				<i class="fas fa-school"></i>
-				<h3 className="m-2 text-dark">My Timetable</h3>
+				<h3 className="m-2 text-dark">Timetable</h3>
 			</div>
 
 			<div className="row align-items-center">

@@ -23,7 +23,7 @@ function ProfileTodo(props) {
 	useEffect(() => {
 		const uid = getUser().uid;
 		return db
-			.collection("Todo")
+			.collection("User Items")
 			.doc(props.user_id)
 			.collection("My Todos")
 			.onSnapshot((snapshot) => {
@@ -50,10 +50,13 @@ function ProfileTodo(props) {
 		setSearchTodo(todo_todo);
 
 		if (search1 === "") {
+			alert("Enter Something.");
 			setSearchTodo(todo_todo);
 			return;
 		}
-		const result = todo_todo.filter((item) => item.title.includes(search1));
+		const result = todo_todo.filter((item) =>
+			item.title.toLowerCase().includes(search1.toLowerCase())
+		);
 		setSearchTodo(result);
 	};
 
@@ -63,11 +66,12 @@ function ProfileTodo(props) {
 		setSearchDoing(doing_todo);
 
 		if (search2 === "") {
+			alert("Enter Something.");
 			setSearchDoing(doing_todo);
 			return;
 		}
 		const result = doing_todo.filter((item) =>
-			item.title.includes(search2)
+			item.title.toLowerCase().includes(search2.toLowerCase())
 		);
 		setSearchDoing(result);
 	};
@@ -79,10 +83,11 @@ function ProfileTodo(props) {
 
 		if (search3 === "") {
 			setSearchCompleted(completed_todo);
+			alert("Enter Something.");
 			return;
 		}
 		const result = completed_todo.filter((item) =>
-			item.title.includes(search3)
+			item.title.toLowerCase().includes(search3.toLowerCase())
 		);
 		setSearchCompleted(result);
 	};

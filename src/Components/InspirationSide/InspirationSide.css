@@ -2,149 +2,59 @@ section #lamp_switch {
     position: absolute;
     right: 10%;
     bottom: 20%;
-    width: 5%;
+    width: 2%;
 }
 
 section #clock {
     position: absolute;
     right: 10%;
-    top: 22%;
-    width: 12%;
+    top: 25%;
+    width: 8%;
+}
+
+#my-view {
+    width: 100%;
+    background-color: white;
+    height: 100vh;
 }
 
 section #inspiration_1 {
     position: absolute;
-    left: 21%;
-    top: 50%;
+    left: 20%;
+    top: 45%;
     width: 150px;
     cursor: pointer;
-}
-
-@media(max-width: 700px) {
-    section #inspiration_1 {
-        position: absolute;
-        left: 21%;
-        top: 50%;
-        width: 85px;
-        cursor: pointer;
-    }
-}
-
-@media(max-width: 1000px) {
-    section #inspiration_1 {
-        position: absolute;
-        left: 21%;
-        top: 50%;
-        width: 100px;
-        cursor: pointer;
-    }
 }
 
 section #inspiration_2 {
     position: absolute;
     left: 35%;
-    top: 50%;
+    top: 45%;
     width: 150px;
     cursor: pointer;
-}
-
-@media(max-width: 700px) {
-    section #inspiration_2 {
-        position: absolute;
-        left: 35%;
-        top: 50%;
-        width: 85px;
-        cursor: pointer;
-    }
-}
-
-@media(max-width: 1000px) {
-    section #inspiration_2 {
-        position: absolute;
-        left: 35%;
-        top: 50%;
-        width: 100px;
-        cursor: pointer;
-    }
 }
 
 section #inspiration_3 {
     position: absolute;
     left: 50%;
-    top: 50%;
+    top: 45%;
     width: 150px;
     cursor: pointer;
-}
-
-@media(max-width: 700px) {
-    section #inspiration_3 {
-        position: absolute;
-        left: 50%;
-        top: 50%;
-        width: 85px;
-        cursor: pointer;
-    }
-}
-
-@media(max-width: 1000px) {
-    section #inspiration_3 {
-        position: absolute;
-        left: 50%;
-        top: 50%;
-        width: 100px;
-        cursor: pointer;
-    }
 }
 
 section #inspiration_4 {
     position: absolute;
     left: 65%;
-    top: 50%;
+    top: 45%;
     width: 150px;
     cursor: pointer;
-}
-
-@media(max-width: 700px) {
-    section #inspiration_4 {
-        position: absolute;
-        left: 65%;
-        top: 50%;
-        width: 85px;
-        cursor: pointer;
-    }
-}
-
-@media(max-width: 1000px) {
-    section #inspiration_4 {
-        position: absolute;
-        left: 65%;
-        top: 50%;
-        width: 100px;
-        cursor: pointer;
-    }
-}
-
-#light_on {
-    position: absolute;
-    left: 45%;
-    top: -30%;
-    width: 12%;
-    z-index: 3;
-}
-
-#light {
-    position: absolute;
-    left: 29%;
-    top: 17%;
-    width: 43%;
-    z-index: 1;
 }
 
 section #ground_lamp {
     position: absolute;
     left: 0;
     bottom: 0;
-    width: 12%;
+    width: 8%;
 }
 
 section #room_1 {
@@ -157,4 +67,92 @@ section #room_1 {
     background-attachment: fixed;
 }
 
-@media screen and (min-width: 320px) and (max-width: 767px) and (orientation: landscape) {}
+.my-border {
+    border: 5px solid rgb(233, 233, 233);
+    outline: 10px solid #000;
+}
+
+section #quote {
+    position: absolute;
+    top: 30%;
+    right: 25%;
+    left: 25%;
+    font-size: 16px;
+    padding: 8px;
+    margin: 0;
+    font-weight: 500;
+    color: white;
+}
+
+@media(max-width: 700px) {
+    section #inspiration_1 {
+        position: absolute;
+        left: 21%;
+        top: 50%;
+        width: 100px;
+        cursor: pointer;
+    }
+    section #inspiration_2 {
+        position: absolute;
+        left: 37%;
+        top: 50%;
+        width: 85px;
+        cursor: pointer;
+    }
+    section #inspiration_3 {
+        position: absolute;
+        right: 37%;
+        top: 50%;
+        width: 85px;
+        cursor: pointer;
+    }
+    section #inspiration_4 {
+        position: absolute;
+        left: 65%;
+        top: 50%;
+        width: 85px;
+        cursor: pointer;
+    }
+    section #quote {
+        position: absolute;
+        top: 30%;
+        right: 21%;
+        left: 22%;
+        font-size: 14px;
+        padding: 5px;
+        margin: 0;
+        font-weight: 400;
+        color: white;
+    }
+}
+
+@media(max-width: 1000px) {
+    section #inspiration_1 {
+        position: absolute;
+        left: 21%;
+        top: 50%;
+        width: 110px;
+        cursor: pointer;
+    }
+    section #inspiration_2 {
+        position: absolute;
+        left: 35%;
+        top: 50%;
+        width: 110px;
+        cursor: pointer;
+    }
+    section #inspiration_3 {
+        position: absolute;
+        right: 35%;
+        top: 50%;
+        width: 110px;
+        cursor: pointer;
+    }
+    section #inspiration_4 {
+        position: absolute;
+        right: 21%;
+        top: 50%;
+        width: 110px;
+        cursor: pointer;
+    }
+}

@@ -9,40 +9,7 @@ function Footer() {
 					<div className="row text-center d-flex justify-content-center pt-5 mb-3">
 						<div className="col-md-2 mb-3">
 							<h6 className="text-uppercase font-weight-bold">
-								<a href="#!" className="my-link">
-									About us
-								</a>
-							</h6>
-						</div>
-						<div className="col-md-2 mb-3">
-							<h6 className="text-uppercase font-weight-bold">
-								<a href="#!" className="my-link">
-									Blogs
-								</a>
-							</h6>
-						</div>
-
-						<div className="col-md-2 mb-3">
-							<h6 className="text-uppercase font-weight-bold">
-								<a href="#!" className="my-link">
-									Developers
-								</a>
-							</h6>
-						</div>
-
-						<div className="col-md-2 mb-3">
-							<h6 className="text-uppercase font-weight-bold">
-								<a href="#!" className="my-link">
-									Help
-								</a>
-							</h6>
-						</div>
-
-						<div className="col-md-2 mb-3">
-							<h6 className="text-uppercase font-weight-bold">
-								<a href="#!" className="my-link">
-									Contact
-								</a>
+								<p>Developer's View</p>
 							</h6>
 						</div>
 
@@ -51,14 +18,12 @@ function Footer() {
 						<div className="row d-flex text-center justify-content-center mb-md-0 mb-4">
 							<div className="col-md-8 col-12 mt-5">
 								<p>
-									Sed ut perspiciatis unde omnis iste natus
-									error sit voluptatem accusantium doloremque
-									laudantium, totam rem aperiam, eaque ipsa
-									quae ab illo inventore veritatis et quasi
-									architecto beatae vitae dicta sunt
-									explicabo. Nemo enim ipsam voluptatem quia
-									voluptas sit aspernatur aut odit aut fugit,
-									sed quia consequuntur.
+									This is a Student Operating System, which is
+									done to make students' workflow easier,
+									interesting, and comfortable. This makes
+									student's activities to the professionals.
+									An AM Project who have dreamt to create
+									StuDream since, 2000.
 								</p>
 							</div>
 						</div>
@@ -66,7 +31,7 @@ function Footer() {
 						<hr className="clearfix d-md-none rgba-white-light"></hr>
 
 						<div className="row pb-3">
-							<div className="col-md-12">
+							{/* <div className="col-md-12">
 								<div className="mb-5 flex-center">
 									<a className="fb-ic m-5">
 										<i className="fab fa-facebook-f fa-lg white-text mr-4">
@@ -99,7 +64,7 @@ function Footer() {
 										</i>
 									</a>
 								</div>
-							</div>
+							</div> */}
 						</div>
 					</div>
 				</div>

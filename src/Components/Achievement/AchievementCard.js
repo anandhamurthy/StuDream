@@ -8,7 +8,7 @@ function AchievementCard(props) {
 	const deleteTodo = (ach_id) => {
 		const uid = getUser().uid;
 		return db
-			.collection("Todo")
+			.collection("User Items")
 			.doc(uid)
 			.collection("My Achievements")
 			.doc(ach_id)
@@ -24,12 +24,12 @@ function AchievementCard(props) {
 	return (
 		<div>
 			<div className="achievement-card  shadow-sm">
-				<div class="mx-3 d-flex justify-content-between align-items-center">
-					<h5 className="m-0">{props.item.event_name}</h5>
+				<div className="mx-3 d-flex justify-content-between align-items-center">
+					<h5 className="m-0 text-white">{props.item.event_name}</h5>
 					<div className="d-flex justify-content-start align-items-center">
 						{props.friend_view ? (
 							<i
-								class="delete far fa-trash-alt"
+								className="delete far fa-trash-alt text-white"
 								onClick={() => {
 									deleteTodo(props.item.achievement_id);
 								}}
@@ -39,20 +39,22 @@ function AchievementCard(props) {
 						)}
 					</div>
 				</div>
-				<p className="mx-3 my-0">
+				<p className="mx-3 my-0 text-white">
 					<i>{props.item.event_place}</i>
 				</p>
-				<p className="mx-3 my-0">
+				<p className="mx-3 my-0 text-white">
 					<i>{props.item.event_date}</i>
 				</p>
 
 				{props.item.event_images.length != 0 ? (
 					<div>
-						<div className="p-2 album-card d-flex justify-content-start align-items-center">
-							<i class=" mx-2 far fa-images"></i>
+						<div className="p-2 d-flex justify-content-start align-items-center">
+							<i className=" mx-2 far fa-images text-white"></i>
 
 							<div>
-								<p className="mx-1 my-0">Event Photos</p>
+								<p className="mx-1 my-0 text-white">
+									Event Photos
+								</p>
 							</div>
 						</div>
 					</div>

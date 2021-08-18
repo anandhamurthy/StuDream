@@ -10,10 +10,18 @@ function ProfileAchievement(props) {
 	const [search, setSearch] = useState("");
 	const [searchAchievement, setSearchAchievement] = useState([]);
 
+	const [achievementImages, setAchievementImages] = useState([]);
+	const [showImages, setShowImages] = useState(false);
+
+	function changeMyTab(ach_images, show_val) {
+		setShowImages(show_val);
+		setAchievementImages(ach_images);
+	}
+
 	useEffect(() => {
 		const uid = getUser().uid;
 		return db
-			.collection("Todo")
+			.collection("User Items")
 			.doc(props.user_id)
 			.collection("My Achievements")
 			.onSnapshot((snapshot) => {
@@ -31,6 +39,7 @@ function ProfileAchievement(props) {
 		setSearchAchievement(achievements);
 
 		if (search === "") {
+			alert("Enter Something.");
 			setSearchAchievement(achievements);
 			return;
 		}
@@ -55,7 +64,7 @@ function ProfileAchievement(props) {
 							className="shadow-sm rounded-left border-0 input-group-text bg-white"
 							id="basic-addon1"
 						>
-							<i class="fas fa-search" onClick={onSearch}></i>
+							<i className="fas fa-search" onClick={onSearch}></i>
 						</span>
 					</div>
 				</div>
@@ -65,18 +74,40 @@ function ProfileAchievement(props) {
 							<div>
 								{search.length != 0
 									? searchAchievement.map((item, index) => (
-											<AchievementCard
-												item={item}
-												user_id={props.user_id}
-												friend_view={props.friend_view}
-											></AchievementCard>
+											<div
+												onClick={() => {
+													changeMyTab(
+														item.event_images,
+														true
+													);
+												}}
+											>
+												<AchievementCard
+													item={item}
+													user_id={props.user_id}
+													friend_view={
+														props.friend_view
+													}
+												></AchievementCard>
+											</div>
 									  ))
 									: achievements.map((item, index) => (
-											<AchievementCard
-												item={item}
-												user_id={props.user_id}
-												friend_view={props.friend_view}
-											></AchievementCard>
+											<div
+												onClick={() => {
+													changeMyTab(
+														item.event_images,
+														true
+													);
+												}}
+											>
+												<AchievementCard
+													item={item}
+													user_id={props.user_id}
+													friend_view={
+														props.friend_view
+													}
+												></AchievementCard>
+											</div>
 									  ))}
 							</div>
 						) : (
@@ -87,6 +118,44 @@ function ProfileAchievement(props) {
 					</div>
 				</div>
 			</div>
+			{showImages && achievementImages.length != 0 ? (
+				<div>
+					<div className="d-flex justify-content-start align-items-center">
+						<i
+							onClick={() => {
+								changeMyTab([], false);
+							}}
+							className="back fas fa-arrow-left"
+						></i>
+						<h3 className="m-2 text-dark">Achievement Photos</h3>
+					</div>
+					<div className="shadow card p-4 border-0">
+						<div className="lefttab">
+							<div className=" list-group">
+								<div className="d-flex justify-content-between flex-wrap">
+									{achievementImages.length ? (
+										achievementImages.map(
+											(img_item, index) => (
+												<img
+													className="achievement-img img-fluid rounded shadow-sm"
+													src={img_item}
+													alt=""
+												></img>
+											)
+										)
+									) : (
+										<div className="m-auto p-5 d-flex align-items-center justify-content-center">
+											<Empty></Empty>
+										</div>
+									)}
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			) : (
+				""
+			)}
 		</div>
 	);
 }
