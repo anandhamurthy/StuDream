@@ -41,7 +41,10 @@ function Profile(props) {
 
 					setEmail(doc.data().email_id);
 					setUserId(doc.data().user_id);
-					setRoomUrl(doc.data().room_id);
+					setRoomUrl(
+						"https://studream.netlify.app/room/" +
+							doc.data().room_id
+					);
 					setCupboard(doc.data().isCupboard);
 					setProfileImage(doc.data().profile_image);
 				} else {
@@ -285,7 +288,13 @@ function Profile(props) {
 											<h6 className="mb-0">Room URL</h6>
 										</div>
 										<div className="col-sm-9 text-secondary">
-											{room_url}
+											<a
+												href={room_url}
+												target="_blank"
+												rel="noreferrer"
+											>
+												{room_url}
+											</a>
 										</div>
 									</div>
 									<hr></hr>
