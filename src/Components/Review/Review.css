@@ -1,0 +1,57 @@
+.slideshow {
+    margin: 10px;
+    overflow: hidden;
+    max-width: 100%;
+}
+
+.slideshowSlider {
+    white-space: nowrap;
+    transition: ease 1000ms;
+}
+
+.review-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5%;
+}
+
+.customer-item {
+    flex: 44%;
+    border-radius: 10px;
+    margin-bottom: 5%;
+    text-align: left;
+    padding: 10px;
+    display: flex;
+    margin: 10px;
+}
+
+.customer-item h3 {
+    font-size: 20px;
+}
+
+.slide {
+    display: inline-block;
+    height: 150px;
+    width: 80%;
+    border-radius: 40px;
+}
+
+/* Buttons */
+
+.slideshowDots {
+    text-align: center;
+}
+
+.slideshowDot {
+    display: inline-block;
+    height: 15px;
+    width: 15px;
+    border-radius: 50%;
+    cursor: pointer;
+    margin: 15px 7px 0px;
+    background-color: #c4c4c4;
+}
+
+.slideshowDot.active {
+    background-color: #6a0dad;
+}

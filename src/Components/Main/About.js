@@ -10,6 +10,7 @@ import achievement_img from "../Img/achievement_img.png";
 import education_img from "../Img/education_img.png";
 
 import "./About.css";
+import Review from "../Review/Review";
 
 function About() {
 	return (
@@ -151,6 +152,10 @@ function About() {
 						</div>
 					</div>
 				</div>
+
+				<h3 className="mt-5 mx-2">Top Reviews</h3>
+
+				<Review></Review>
 			</div>
 			<Footer></Footer>
 		</div>
