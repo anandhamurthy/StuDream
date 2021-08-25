@@ -59,10 +59,10 @@ function FrontSide() {
 
 	const onSubmit = async (event) => {
 		event.preventDefault();
-		var user = getUser();
+		//var user = getUser();
 		const key = db
 			.collection("User Items")
-			.doc(user.uid)
+			.doc(params.id)
 			.collection("My Visitors")
 			.doc().id;
 
@@ -81,7 +81,7 @@ function FrontSide() {
 			currentdate.getSeconds();
 		return db
 			.collection("User Items")
-			.doc(user.uid)
+			.doc(params.id)
 			.collection("My Visitors")
 			.doc(key)
 			.set({
@@ -111,6 +111,9 @@ function FrontSide() {
 									alt=""
 									id="bio_metrics"
 									onClick={openRoom}
+									data-bs-toggle="tooltip"
+									data-bs-placement="top"
+									title="Click with your finger"
 								/>
 								<p id="name">
 									{localStorage.getItem("userName")}'s Room
@@ -123,6 +126,9 @@ function FrontSide() {
 									alt=""
 									id="bio_metrics"
 									onClick={onSubmit}
+									data-bs-toggle="tooltip"
+									data-bs-placement="top"
+									title="Click with your finger"
 								/>
 								<p id="name">{name}'s Room</p>
 							</div>

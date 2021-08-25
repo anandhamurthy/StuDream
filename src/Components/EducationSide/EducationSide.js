@@ -36,6 +36,9 @@ function EducationSide(props) {
 					alt=""
 					id="my_computer"
 					onClick={openProfile}
+					data-bs-toggle="tooltip"
+					data-bs-placement="top"
+					title="Profile"
 				/>
 
 				<img
@@ -43,9 +46,20 @@ function EducationSide(props) {
 					alt=""
 					id="my_achievement"
 					onClick={openAchievement}
+					data-bs-toggle="tooltip"
+					data-bs-placement="top"
+					title="Achievements"
 				/>
 
-				<img src={exam} alt="" id="my_exam" onClick={openEducation} />
+				<img
+					src={exam}
+					alt=""
+					id="my_exam"
+					onClick={openEducation}
+					data-bs-toggle="tooltip"
+					data-bs-placement="top"
+					title="Exams"
+				/>
 			</section>
 
 			{education ? (

@@ -101,9 +101,19 @@ function BrainSide(props) {
 						alt=""
 						onClick={openBrains}
 						id="brain"
+						data-bs-toggle="tooltip"
+						data-bs-placement="top"
+						title="My Brain"
 					/>
 				) : (
-					<img src={main_brain} alt="" id="brain" />
+					<img
+						src={main_brain}
+						alt=""
+						id="brain"
+						data-bs-toggle="tooltip"
+						data-bs-placement="top"
+						title="My Brain"
+					/>
 				)}
 
 				{b_1.length !== 0 ? (

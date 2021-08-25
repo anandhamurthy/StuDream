@@ -57,13 +57,23 @@ function CalenderSide(props) {
 				<img src={room_2} alt="" id="room_2" onClick={openTimeTable} />
 
 				{lockCupboard ? (
-					<img src={cupboard} alt="" id="my_cupboard" />
+					<img
+						src={cupboard}
+						alt=""
+						id="my_cupboard"
+						data-bs-toggle="tooltip"
+						data-bs-placement="top"
+						title="Cupboard"
+					/>
 				) : (
 					<img
 						src={cupboard}
 						alt=""
 						id="my_cupboard"
 						onClick={openCupboard}
+						data-bs-toggle="tooltip"
+						data-bs-placement="top"
+						title="Cupboard"
 					/>
 				)}
 				<img src={todo_img} alt="" id="my_todo" onClick={openTodo} />
@@ -72,6 +82,9 @@ function CalenderSide(props) {
 					alt=""
 					id="my_time_table"
 					onClick={openTimeTable}
+					data-bs-toggle="tooltip"
+					data-bs-placement="top"
+					title="Timetable"
 				/>
 				<img src={budha} alt="" id="my_budha" />
 			</section>
