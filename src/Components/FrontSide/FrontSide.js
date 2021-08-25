@@ -5,7 +5,7 @@ import door from "../Img/front.png";
 import bio_metrics from "../Img/finger_print.gif";
 import { useParams } from "react-router-dom";
 import { db } from "../Firebase/firebase";
-import { getUser } from "../Firebase/auth";
+//import { getUser } from "../Firebase/auth";
 import PageNotFound from "../PageNotFound/PageNotFound";
 
 function FrontSide() {
